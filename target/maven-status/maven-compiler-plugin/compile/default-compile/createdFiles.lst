@@ -7,4 +7,5 @@ com/blank/delivery/utils/SessionUtil.class
 com/blank/delivery/sessionbean/AbstractFacade.class
 com/blank/delivery/utils/AuthUtil.class
 controller/management/RegisterController.class
+controller/customer/CustomerRegisterController.class
 com/blank/delivery/sessionbean/UserFacadeLocal.class

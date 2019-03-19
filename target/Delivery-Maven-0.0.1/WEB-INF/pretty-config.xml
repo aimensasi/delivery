@@ -13,6 +13,11 @@
 		<view-id value="/auth/login.xhtml" />
 	</url-mapping>
   
+  <url-mapping id="register">
+		<pattern value="/register" />
+		<view-id value="/auth/customer-register.xhtml" />
+	</url-mapping>
+  
 	<url-mapping id="management-register">
 		<pattern value="/management/register" />
 		<view-id value="/auth/register.xhtml" />
@@ -21,6 +26,12 @@
   <url-mapping id="management-dashboard">
 		<pattern value="/management/dashboard" />
 		<view-id value="/management/dashboard.xhtml" />
+	</url-mapping>
+  
+  
+  <url-mapping id="customer-dashboard">
+		<pattern value="/customer/dashboard" />
+		<view-id value="/customer/dashboard.xhtml" />
 	</url-mapping>
  
 </pretty-config>
