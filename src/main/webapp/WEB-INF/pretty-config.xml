@@ -28,6 +28,35 @@
 		<view-id value="/management/dashboard.xhtml" />
 	</url-mapping>
   
+  <url-mapping id="management-customers">
+		<pattern value="/management/customers" />
+		<view-id value="/management/customer.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="management-food">
+		<pattern value="/management/food" />
+		<view-id value="/management/food.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="management-feedback">
+		<pattern value="/management/feedback" />
+		<view-id value="/management/feedback.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="management-staff">
+		<pattern value="/management/management-staff" />
+		<view-id value="/management/management-staff.xhtml" />
+	</url-mapping>  
+
+  <url-mapping id="management-delivery">
+		<pattern value="/management/delivery-staff" />
+		<view-id value="/management/delivery-staff.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="management-reservation">
+		<pattern value="/management/reservation-staff" />
+		<view-id value="/management/reservation-staff.xhtml" />
+	</url-mapping>
   
   <url-mapping id="customer-dashboard">
 		<pattern value="/customer/dashboard" />

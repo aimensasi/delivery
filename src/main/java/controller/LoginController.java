@@ -72,6 +72,7 @@ public class LoginController implements Serializable {
       case Constants.ROLE_DELIVERY_STAFF:
         break;
       case Constants.ROLE_CUSTOMER:
+        redirectUrl = "/customer/dashboard?faces-redirect=true";
         break;
       default:
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Something Went Wrong", null));
