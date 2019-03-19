@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+  
+  <h:head>
+    <title>Management Staff Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    
+    
+    <f:metadata>
+      <f:event type="preRenderView" listener="#{authUtil.isOpen()}"/>
+    </f:metadata>
+  </h:head>
+  <h:body>
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="row mt-5">
+            <h3 class="text-center">Management Staff Register</h3>
+          </div>
+          <p:messages id="messages"/>
+     
+          <h:form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <!--<input type="text" class="form-control" id="name" placeholder="Enter email"/>-->
+              <p:inputText value="#{registerController.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
+              <p:message for="name" style="color:red"/>		
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <!--<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>-->
+              <p:inputText value="#{registerController.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
+              <p:message for="email" style="color:red"/>		
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <!--<input type="password" class="form-control" id="pasword" placeholder="Password"/>-->
+              <p:password value="#{registerController.password}" class="form-control" id="password" placeholder="Enter Password" required="true" requiredMessage="Password is required"/>
+              <p:message for="email" style="color:red"/>		
+            </div>
+            <p:commandButton value="Register" action="#{registerController.register()}" update=":messages" class="btn btn-primary"/>
+          </h:form>
+        </div>
+      </div>
+    </div>
+  </h:body>
+</html>
+
