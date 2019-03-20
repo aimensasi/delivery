@@ -3,6 +3,7 @@ controller/management/DashboardController.class
 controller/LoginController.class
 com/blank/delivery/sessionbean/UserFacade.class
 com/blank/delivery/sessionbean/FoodFacadeLocal.class
+controller/management/DeliveryStaffController.class
 controller/management/FoodController.class
 controller/management/StaffManagementController.class
 com/blank/delivery/sessionbean/UserFacadeLocal.class
