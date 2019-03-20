@@ -74,5 +74,14 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     
     return query.getResultList();
   }
+
+  @Override
+  public List<User> findByRole(String role, int currentUserId) {
+    TypedQuery<User> query = em.createNamedQuery("User.findByRoleExceptCurrent", User.class).setParameter("role", role).setParameter("id", currentUserId);
+    
+    return query.getResultList();
+  }
+  
+  
    
 }

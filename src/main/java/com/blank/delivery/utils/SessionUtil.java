@@ -63,13 +63,12 @@ public class SessionUtil {
   * Get userid from session
   * @return
   */
- public static String getUserId(){
+ public static int getUserId(){
     HttpSession session = getSession();
     if ( session != null )
-     return (String) session.getAttribute("user_id");
+     return (int) session.getAttribute("user_id");
     else
-     return null;
+     return -1;
   }
- 
  
 }

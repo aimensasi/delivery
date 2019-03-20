@@ -13,48 +13,23 @@
     
     
     <ui:composition >
-
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Delivery System</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="dashboard">Dashboard<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="customers">Customers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="food">Food</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="feedback">Feedback</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Staff Management
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="management-staff">Management Staff</a>
-                <a class="dropdown-item" href="reservation-staff">Reservation Staff</a>
-                <a class="dropdown-item" href="delivery-staff">Delivery Staff</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <h:form style="margin-top: 7px;">
-                <h:commandLink id="logout" value="logout" action="#{loginController.logout}" style="color: rgba(0,0,0,.5);margin-left: 15px;padding-top: 13px;"/>
-              </h:form>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      <h:form class="mb-5">
+        <p:menubar>
+          <p:menuitem value="Dashboard" url="dashboard" />
+          <p:menuitem value="Customers" url="customers" />
+          <p:menuitem value="Foods" url="food" />
+          <p:menuitem value="FeedBack" url="feedback" />
+          <p:submenu label="Staff Management">
+            <p:menuitem value="Management Staff" url="management-staff"/>
+            <p:menuitem value="Reservation Staff" url="reservation-staff"/>
+            <p:menuitem value="Delivery Staff" url="delivery-staff"/>
+          </p:submenu>
+          <p:submenu label="#{dashboardController.getCurrentUserName()}" style="text-transform: uppercase;">
+            <p:menuitem value="Profile" url="management-staff"/>
+            <p:menuitem value="Logout" action="#{loginController.logout()}"/>
+          </p:submenu>
+        </p:menubar>
+      </h:form>
     </ui:composition>
   </h:body>
 </html>

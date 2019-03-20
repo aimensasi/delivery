@@ -17,5 +17,6 @@ public class Constants {
   public final static String ROLE_RESERVATION_STAFF = "Reservation Staff";
   public final static String ROLE_DELIVERY_STAFF = "Delivery Staff";
   public final static String ROLE_CUSTOMER = "Customer";
+  public final static String DEFAULT_PASSWORD = "secret";
   
 }

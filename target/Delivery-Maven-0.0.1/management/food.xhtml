@@ -1,12 +1,81 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
   <h:head>
-    <title>Facelet Title</title>
   </h:head>
   <h:body>
-    Hello from Facelets
+    <ui:composition template="./../WEB-INF/management-layouts/master.xhtml">
+
+      <ui:define name="main"> 
+        
+        
+        <h:form>
+            <h:panelGrid columns="12" cellpadding="5">
+                <h:outputText value="Name " />
+                <p:inputText value="#{mFoodController.newFood.name}"/>
+                <h:outputText value="description " />
+                <p:inputText value="#{mFoodController.newFood.description}" />
+                <h:outputText value="Category " />
+                <p:inputText value="#{mFoodController.newFood.category}"/>
+                <h:outputText value="Quantity " />
+                <p:inputText value="#{mFoodController.newFood.quantity}"/>
+                <h:outputText value="Price " />
+                <p:inputText value="#{mFoodController.newFood.price}"/>
+                <p:commandButton value="Add" icon="fa fa-fw fa-plus" action="#{mFoodController.create()}"/>
+            </h:panelGrid>
+        </h:form>
+        
+        <h:form id="form">
+          <p:dataTable value="#{mFoodController.getFoods()}" var="food" style="margin: 2em;" rowKey="#{food.id}">
+              <p:column headerText="Name">
+                <h:outputText value="#{food.name}"/>
+              </p:column>
+              <p:column headerText="Description">
+                <h:outputText value="#{food.description}"/>
+              </p:column>
+              <p:column headerText="Category">
+                  <h:outputText value="#{food.category}"/>
+              </p:column>
+              <p:column headerText="Quantity">
+                  <h:outputText value="#{food.quantity}"/>
+              </p:column>
+              <p:column headerText="Price">
+                  <h:outputText value="#{food.price}"/>
+              </p:column>
+              <p:column style="width:100px;text-align: center">
+                <p:commandButton action="#{mFoodController.delete(food)}" value="Delete"></p:commandButton>
+              </p:column>
+              <p:column style="width:100px;text-align: center">
+                  <p:commandButton value="Edit" update=":form:foodEdit" oncomplete="PF('editDialog').show()">
+                    <f:setPropertyActionListener value="#{food}" target="#{mFoodController.selectedFood}"/>
+                  </p:commandButton>
+              </p:column>
+          </p:dataTable>
+          <p:dialog header="Edit Food" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+              <p:outputPanel id="foodEdit" style="text-align:center;">
+                <h:panelGrid columns="12" cellpadding="5" columnClasses="label,value" rendered="#{not empty mFoodController.selectedFood}">
+                  <h:outputText value="Name: " />
+                  <p:inputText value="#{mFoodController.selectedFood.name}" />
+                  <h:outputText value="Description: " />
+                  <p:inputText value="#{mFoodController.selectedFood.description}" />
+                  <h:outputText value="Category: " />
+                  <p:inputText value="#{mFoodController.selectedFood.category}" />
+                  <h:outputText value="Quantity: " />
+                  <p:inputText value="#{mFoodController.selectedFood.quantity}" />
+                  <h:outputText value="Price: " />
+                  <p:inputText value="#{mFoodController.selectedFood.price}" />
+                </h:panelGrid>
+                <p:commandButton value="Update" action="#{mFoodController.update()}"/>
+              </p:outputPanel>
+            </p:dialog>
+        </h:form>  
+      </ui:define>
+    </ui:composition>
+    
   </h:body>
 </html>
-
