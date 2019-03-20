@@ -39,6 +39,11 @@ public class SessionUtil {
   }
   
   public static Object getAttribute(String key){
+    HttpSession session = getSession();
+   
+    if (session == null) {
+      return null;
+    }
     return getSession().getAttribute(key);
   }
   

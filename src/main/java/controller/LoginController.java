@@ -82,6 +82,10 @@ public class LoginController implements Serializable {
     
     return redirectUrl;
   }
+  
+  public void logout(){
+    SessionUtil.getSession().invalidate();
+  }
 
   public String getEmail() {
     return email;

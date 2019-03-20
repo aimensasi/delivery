@@ -1,11 +1,12 @@
-com/blank/delivery/models/User_.class
 com/blank/delivery/models/User.class
 controller/LoginController.class
 com/blank/delivery/sessionbean/UserFacade.class
+com/blank/delivery/sessionbean/UserFacadeLocal.class
+com/blank/delivery/models/User_.class
 com/blank/delivery/utils/Constants.class
+controller/management/CustomerController.class
 com/blank/delivery/utils/SessionUtil.class
 com/blank/delivery/sessionbean/AbstractFacade.class
 com/blank/delivery/utils/AuthUtil.class
 controller/management/RegisterController.class
 controller/customer/CustomerRegisterController.class
-com/blank/delivery/sessionbean/UserFacadeLocal.class

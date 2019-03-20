@@ -36,4 +36,6 @@ public interface UserFacadeLocal {
   
   User attempt(String email, String password);
   
+  List<User> findByRole(String role);
+  
 }
