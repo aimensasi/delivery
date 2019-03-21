@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+  <h:head>
+  </h:head>
+  <h:body>
+    <ui:composition template="./../WEB-INF/customer-layouts/master.xhtml">
+      <ui:define name="main"> 
+         
+        <h2 class="title">It's the food you love, delivered</h2>
+        
+        
+        <h:form id="form">
+          <p:messages id="checkout-0129"/>
+          <p:dataTable var="reservationItem" value="#{menuController.reservationItems}" >
+
+            
+            <p:column headerText="Id">
+              <h:outputText value="#{reservationItem.food.id}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{reservationItem.food.name}" />
+            </p:column>
+
+            <p:column headerText="Description">
+                <h:outputText value="#{reservationItem.food.description}" />
+            </p:column>
+
+            <p:column headerText="Category">
+                <h:outputText value="#{reservationItem.food.category}" />
+            </p:column>
+            
+            <p:column headerText="Price">
+                <h:outputText value="#{reservationItem.food.price}" />
+            </p:column>
+            
+            <p:column headerText="Quantity">
+              <p:spinner id="quantity" value="#{reservationItem.quantity}" min="0" max="#{reservationItem.food.quantity}" style="width: 100%" styleClass="full-width">
+                <p:ajax update="total-price" process="@this" />
+              </p:spinner>
+            </p:column>
+            
+            <p:column headerText="Totoal Price">
+              <h:outputText id="total-price" value="#{reservationItem.quantity * reservationItem.food.price}"  />
+            </p:column>
+          </p:dataTable>
+          
+          <p:commandButton value="Checkout" action="#{menuController.checkout()}" update=":form:checkout-0129"/>
+        </h:form>
+        
+        
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>

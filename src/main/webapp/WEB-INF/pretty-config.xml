@@ -58,9 +58,32 @@
 		<view-id value="/management/reservation-staff.xhtml" />
 	</url-mapping>
   
-  <url-mapping id="customer-dashboard">
-		<pattern value="/customer/dashboard" />
-		<view-id value="/customer/dashboard.xhtml" />
+  <url-mapping id="management-profile">
+		<pattern value="/management/profile" />
+		<view-id value="/management/profile.xhtml" />
+	</url-mapping>
+  
+  
+  
+  <url-mapping id="menu">
+		<pattern value="/menu" />
+		<view-id value="/customer/menu.xhtml" />
+	</url-mapping>
+  <url-mapping id="e-wallet">
+		<pattern value="/e-wallet" />
+		<view-id value="/customer/e-wallet.xhtml" />
+	</url-mapping>
+  <url-mapping id="feedback">
+		<pattern value="/feedback" />
+		<view-id value="/customer/feedback.xhtml" />
+	</url-mapping>
+  <url-mapping id="order">
+		<pattern value="/orders" />
+		<view-id value="/customer/orders.xhtml" />
+	</url-mapping>
+  <url-mapping id="profile">
+		<pattern value="/profile" />
+		<view-id value="/customer/profile.xhtml" />
 	</url-mapping>
  
 </pretty-config>

@@ -33,7 +33,10 @@ import javax.xml.bind.annotation.XmlRootElement;
   , @NamedQuery(name = "Food.findByName", query = "SELECT f FROM Food f WHERE f.name = :name")
   , @NamedQuery(name = "Food.findByCategory", query = "SELECT f FROM Food f WHERE f.category = :category")
   , @NamedQuery(name = "Food.findByQuantity", query = "SELECT f FROM Food f WHERE f.quantity = :quantity")
-  , @NamedQuery(name = "Food.findByPrice", query = "SELECT f FROM Food f WHERE f.price = :price")})
+  , @NamedQuery(name = "Food.findByPrice", query = "SELECT f FROM Food f WHERE f.price = :price")
+  , @NamedQuery(name = "Food.whereQuantityNotZero", query = "SELECT f FROM Food f WHERE f.quantity > 0")
+        
+ })
 public class Food implements Serializable {
 
   private static final long serialVersionUID = 1L;

@@ -5,6 +5,7 @@
  */
 package com.blank.delivery.utils;
 
+import com.blank.delivery.models.User;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

@@ -30,4 +30,6 @@ public interface FoodFacadeLocal {
 
   int count();
   
+  List<Food> whereQuantityMoreThanZero();
+  
 }

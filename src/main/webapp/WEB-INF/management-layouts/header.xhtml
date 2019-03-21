@@ -24,8 +24,8 @@
             <p:menuitem value="Reservation Staff" url="reservation-staff"/>
             <p:menuitem value="Delivery Staff" url="delivery-staff"/>
           </p:submenu>
-          <p:submenu label="#{dashboardController.getCurrentUserName()}" style="text-transform: uppercase;">
-            <p:menuitem value="Profile" url="management-staff"/>
+          <p:submenu label="#{dashboardController.getCurrentUserName()}">
+            <p:menuitem value="Profile" url="profile"/>
             <p:menuitem value="Logout" action="#{loginController.logout()}"/>
           </p:submenu>
         </p:menubar>

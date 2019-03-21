@@ -71,10 +71,10 @@ public class CustomerRegisterController implements Serializable {
     try {
       userFacade.create(user);
      
-      SessionUtil.setAttribue(Constants.ROLE_TYPE, Constants.ROLE_MANAGEMENT_STAFF);
+      SessionUtil.setAttribue(Constants.ROLE_TYPE, Constants.ROLE_CUSTOMER);
       SessionUtil.setAttribue(Constants.USER_ID, user.getId());
       
-      return "/customer/dashboard?faces-redirect=true";
+      return "/menu?faces-redirect=true";
       
     } catch (Exception e) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Something Went Wrong, Please Try Again", null));    

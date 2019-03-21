@@ -6,9 +6,11 @@
 package com.blank.delivery.sessionbean;
 
 import com.blank.delivery.models.Food;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +30,17 @@ public class FoodFacade extends AbstractFacade<Food> implements FoodFacadeLocal 
   public FoodFacade() {
     super(Food.class);
   }
+
+  @Override
+  public List<Food> whereQuantityMoreThanZero() {
+    
+    TypedQuery<Food> query = em.createNamedQuery("Food.whereQuantityNotZero", Food.class);
+    
+    return query.getResultList();
+  }
+
+  
+  
+  
   
 }

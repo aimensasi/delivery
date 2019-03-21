@@ -5,6 +5,7 @@
  */
 package com.blank.delivery.utils;
 
+import com.blank.delivery.models.User;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import java.io.IOException;
 import javax.inject.Named;
@@ -38,23 +39,29 @@ public class AuthUtil implements Serializable {
     
     ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
     
+    String redirectUrl = "";
+    
     if (userIdSession != null) {
       switch(roleTypeSession.toString()){
         case Constants.ROLE_MANAGEMENT_STAFF:
-          
-          try {
-            context.redirect(context.getRequestContextPath() + "/management/dashboard?faces-redirect=true");
-          } catch (IOException e) {
-            System.out.println("com.blank.delivery.utils.AuthUtil.isGuest()  " + e.getMessage());
-          }
-          
+          redirectUrl = "/management/dashboard?faces-redirect=true";
           break;
         case Constants.ROLE_RESERVATION_STAFF:
+          redirectUrl = "/reservation/dashboard?faces-redirect=true";
           break;
         case Constants.ROLE_DELIVERY_STAFF:
+          redirectUrl = "/management/delivery?faces-redirect=true";
           break;
         case Constants.ROLE_CUSTOMER:
+          redirectUrl = "/menu?faces-redirect=true";
           break;
+      }
+      
+      
+      try {
+        context.redirect(context.getRequestContextPath() + redirectUrl);
+      } catch (IOException e) {
+        System.out.println("com.blank.delivery.utils.AuthUtil.isGuest()  " + e.getMessage());
       }
     }
   } 
@@ -85,6 +92,16 @@ public class AuthUtil implements Serializable {
       } catch (IOException e) {
         System.out.println("com.blank.delivery.utils.AuthUtil.isGuest()  " + e.getMessage());
       }
+      
+      return;
     }
+    
+//    Check if the user is verified
+    
+//    User user = userFacade.find(userIdSession);
+//    
+//    if (user.getRole().equals(Constants.ROLE_CUSTOMER)) {
+//      
+//    }
   }
 }

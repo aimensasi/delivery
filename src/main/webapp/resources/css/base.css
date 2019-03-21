@@ -1,3 +1,7 @@
 .ui-menuitem {
   margin-right: 1.5rem !important;
 }
+
+.full-width, .full-width input{
+  width: 100% !important;
+}

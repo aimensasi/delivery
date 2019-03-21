@@ -6,6 +6,7 @@
 package com.blank.delivery.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -68,6 +70,8 @@ public class User implements Serializable {
   @Column(name = "role", length = 255)
   private String role;
   
+  @OneToMany(mappedBy = "customer")
+  private List<Reservation> reservations;
   
 
   public User() {
@@ -123,6 +127,16 @@ public class User implements Serializable {
   public void setRole(String role) {
     this.role = role;
   }
+
+  public List<Reservation> getReservations() {
+    return reservations;
+  }
+
+  public void setReservations(List<Reservation> reservations) {
+    this.reservations = reservations;
+  }
+  
+  
 
   @Override
   public int hashCode() {
