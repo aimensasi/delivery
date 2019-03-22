@@ -64,6 +64,38 @@
 	</url-mapping>
   
   
+
+
+
+  <url-mapping id="reservation-dashboard">
+		<pattern value="/reservation/dashboard" />
+		<view-id value="/reservation/dashboard.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="reservation-orders">
+		<pattern value="/reservation/orders" />
+		<view-id value="/reservation/order.xhtml" />
+	</url-mapping>
+  
+   <url-mapping id="reservation-orders-view">
+		<pattern value="/reservation/orders/#{id}" />
+		<view-id value="/reservation/order-show.xhtml" />
+	</url-mapping>
+  
+  
+  <url-mapping id="reservation-profile">
+		<pattern value="/reservation/profile" />
+		<view-id value="/reservation/profile.xhtml" />
+	</url-mapping>
+
+
+
+
+
+
+
+
+  
   
   <url-mapping id="menu">
 		<pattern value="/menu" />
@@ -85,5 +117,6 @@
 		<pattern value="/profile" />
 		<view-id value="/customer/profile.xhtml" />
 	</url-mapping>
+  
  
 </pretty-config>

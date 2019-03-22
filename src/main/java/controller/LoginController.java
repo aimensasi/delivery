@@ -9,7 +9,6 @@ import com.blank.delivery.models.User;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
 import com.blank.delivery.utils.SessionUtil;
-import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
