@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -72,6 +73,10 @@ public class User implements Serializable {
   
   @OneToMany(mappedBy = "customer")
   private List<Reservation> reservations;
+  
+  
+  @OneToOne(mappedBy = "customer")
+  private EWallet eWallet;
   
 
   public User() {
@@ -135,7 +140,14 @@ public class User implements Serializable {
   public void setReservations(List<Reservation> reservations) {
     this.reservations = reservations;
   }
-  
+
+  public EWallet geteWallet() {
+    return eWallet;
+  }
+
+  public void seteWallet(EWallet eWallet) {
+    this.eWallet = eWallet;
+  }
   
 
   @Override

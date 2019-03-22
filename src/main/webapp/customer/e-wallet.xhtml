@@ -12,7 +12,31 @@
     <ui:composition template="./../WEB-INF/customer-layouts/master.xhtml">
 
       <ui:define name="main"> 
-         
+        <div class="row mt-5 d-flex">
+          <div class="col-4 mx-auto">
+            <h:form id="form">
+              <div class="card d-flex flex-column" style="background: #eee; box-shadow: 3px 4px 8px #eee; height: 200px;">
+                <div class="row">
+                  <h3 class="text-center" style="display: block; width: 100%">E-Wallet</h3>
+                </div>
+                <div class="row p-0 m-0 mt-2" >
+                  <h:outputText value="#{eWalletController.balance}" style="width: 100%; text-align: center; font-size: 3rem;"/>
+                </div>
+                <div class="row mt-3 mt-auto p-0 m-0">
+                  <p:commandButton value="Top Up" update=":form:topUp" onclick="PF('topUpDialog').show()" type="button" style="width: 100%"/>
+                </div>
+              </div>
+              <p:dialog header="Top Up" widgetVar="topUpDialog" showEffect="fade" hideEffect="fade" resizable="false" modal="true" width="300" height="100">
+                <p:outputPanel id="topUp" style="text-align:center;">
+                  <div class="row mx-auto mb-3">
+                    <p:inputText value="#{eWalletController.amount}" style="width: 100%"/>
+                  </div>
+                  <p:commandButton value="Top Up" action="#{eWalletController.topUp()}" class="" style="width: 100%;"/>
+                </p:outputPanel>
+              </p:dialog>
+            </h:form>
+          </div>
+        </div>
       </ui:define>
     </ui:composition>
   </h:body>

@@ -43,10 +43,11 @@ public class MenuController implements Serializable {
   
   
   private Reservation reservation;
-  
+  private User currentCustomer;
  
   private List<Food> foodList;
   private List<ReservationItem> reservationItems = new ArrayList<>();
+  
   
   
   /**
@@ -57,7 +58,7 @@ public class MenuController implements Serializable {
   
   @PostConstruct
   public void onInit(){
-    User currentCustomer = userFacade.find(SessionUtil.getUserId());
+    currentCustomer = userFacade.find(SessionUtil.getUserId());
     
     
     reservation = new Reservation(currentCustomer);
@@ -123,6 +124,11 @@ public class MenuController implements Serializable {
       return;
     }
     
+  
+    if (currentCustomer.geteWallet() == null || currentCustomer.geteWallet().getBalance() < totalPrice) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Your e-wallet does not have enough money, top up and come back again.", null));
+      return;
+    }
     
     reservation.setStatus("processing");
     reservation.setTotalPrice(totalPrice);

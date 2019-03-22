@@ -6,7 +6,9 @@
 package controller.customer;
 
 
+import com.blank.delivery.models.EWallet;
 import com.blank.delivery.models.User;
+import com.blank.delivery.sessionbean.EWalletFacadeLocal;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
 import com.blank.delivery.utils.SessionUtil;
@@ -29,6 +31,10 @@ public class CustomerRegisterController implements Serializable {
 
   @EJB
   private UserFacadeLocal userFacade;
+  @EJB
+  private EWalletFacadeLocal eWalletFacade;
+  
+  
   private User user;
   private String name;
   private String email;
@@ -70,6 +76,9 @@ public class CustomerRegisterController implements Serializable {
     
     try {
       userFacade.create(user);
+      
+      EWallet eWallet = new EWallet(user);
+      eWalletFacade.create(eWallet);
      
       SessionUtil.setAttribue(Constants.ROLE_TYPE, Constants.ROLE_CUSTOMER);
       SessionUtil.setAttribue(Constants.USER_ID, user.getId());

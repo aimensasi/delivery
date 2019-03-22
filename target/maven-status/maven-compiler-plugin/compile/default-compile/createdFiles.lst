@@ -4,7 +4,9 @@ com/blank/delivery/models/User.class
 controller/LoginController.class
 com/blank/delivery/sessionbean/FoodFacadeLocal.class
 controller/management/DeliveryStaffController.class
+com/blank/delivery/sessionbean/EWalletFacade.class
 controller/management/StaffManagementController.class
+com/blank/delivery/models/EWallet.class
 com/blank/delivery/models/ReservationItem.class
 controller/customer/MenuController.class
 com/blank/delivery/models/Food_.class
@@ -14,14 +16,17 @@ controller/management/RegisterController.class
 controller/customer/CustomerRegisterController.class
 controller/customer/OrderController.class
 com/blank/delivery/sessionbean/ReservationFacade.class
+controller/customer/EWalletController.class
 controller/management/DashboardController.class
 com/blank/delivery/sessionbean/UserFacade.class
 com/blank/delivery/models/Reservation.class
 controller/management/FoodController.class
 com/blank/delivery/models/ReservationItem_.class
+com/blank/delivery/sessionbean/EWalletFacadeLocal.class
 com/blank/delivery/sessionbean/UserFacadeLocal.class
 com/blank/delivery/sessionbean/FoodFacade.class
 com/blank/delivery/models/User_.class
+com/blank/delivery/models/EWallet_.class
 controller/management/CustomerController.class
 com/blank/delivery/utils/SessionUtil.class
 controller/management/ReservationStaffController.class
