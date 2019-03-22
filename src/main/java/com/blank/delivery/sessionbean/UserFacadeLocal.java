@@ -40,6 +40,4 @@ public interface UserFacadeLocal {
   
   List<User> findByRole(String role, int currentUserId);
   
-  
-  
 }

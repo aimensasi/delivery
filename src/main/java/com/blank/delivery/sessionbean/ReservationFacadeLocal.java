@@ -6,6 +6,7 @@
 package com.blank.delivery.sessionbean;
 
 import com.blank.delivery.models.Reservation;
+import com.blank.delivery.models.User;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,7 @@ public interface ReservationFacadeLocal {
   int count();
   
   List<Reservation> getCurrentCustomerOrders();
+  
+  List<Reservation> findApprovedOrdersWithDeliverStaff(User deliveryStaff);
   
 }

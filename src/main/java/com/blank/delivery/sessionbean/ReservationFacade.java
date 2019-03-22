@@ -8,11 +8,14 @@ package com.blank.delivery.sessionbean;
 import com.blank.delivery.models.Food;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.ReservationItem;
+import com.blank.delivery.models.User;
+import com.blank.delivery.utils.Constants;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -49,8 +52,12 @@ public class ReservationFacade extends AbstractFacade<Reservation> implements Re
   public List<Reservation> getCurrentCustomerOrders() {
     return null;
   }
-  
-  
-  
+
+  @Override
+  public List<Reservation> findApprovedOrdersWithDeliverStaff(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findWithDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "approved");
+    
+    return query.getResultList();
+  }
   
 }

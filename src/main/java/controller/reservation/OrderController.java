@@ -15,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -23,7 +24,7 @@ import javax.faces.context.FacesContext;
  * @author aimen.s.a.sasi
  */
 @Named(value = "rOrderController")
-@SessionScoped
+@RequestScoped
 public class OrderController implements Serializable {
   
   @EJB

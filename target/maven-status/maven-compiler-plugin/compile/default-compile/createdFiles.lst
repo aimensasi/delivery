@@ -24,6 +24,7 @@ com/blank/delivery/sessionbean/UserFacade.class
 com/blank/delivery/models/Reservation.class
 controller/management/FoodController.class
 com/blank/delivery/models/ReservationItem_.class
+controller/reservation/ShowOrderController.class
 com/blank/delivery/sessionbean/EWalletFacadeLocal.class
 com/blank/delivery/sessionbean/UserFacadeLocal.class
 com/blank/delivery/sessionbean/FoodFacade.class

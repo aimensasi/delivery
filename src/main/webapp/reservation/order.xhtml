@@ -6,7 +6,34 @@
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:define name="main">
-    <h2>Hello World From The Com</h2>
+    
+    <h:form>
+      <p:dataTable var="reservation" value="#{rOrderController.reservationList}" >
+
+
+        <p:column headerText="Id">
+          <h:outputText value="#{reservation.id}" />
+        </p:column>
+
+        <p:column headerText="Number Of Items">
+          <h:outputText value="#{reservation.reservationItemList.size()}" />
+        </p:column>
+
+        <p:column headerText="Status">
+          <h:outputText value="#{reservation.status}" />
+        </p:column>
+
+        <p:column headerText="Price">
+          <h:outputText value="#{reservation.totalPrice}" />
+        </p:column>
+        
+        <p:column headerText="Action">
+          <p:commandButton value="View" action="#{rOrderController.view(reservation)}"  />
+        </p:column>
+
+      </p:dataTable>
+    </h:form>
+    
   </ui:define>
 
 </ui:composition>
