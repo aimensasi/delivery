@@ -23,7 +23,7 @@
             <p:inputText value="#{profileController.currentUser.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
             <p:message for="email" style="color:red"/>		
           </div>
-          <p:commandButton value="Update" action="#{profileController.update()}" update=":edit-messages" class="btn btn-primary"/>
+          <p:commandButton value="Update" action="#{profileController.update()}" update=":edit-messages" styleClass="ui-priority-primary"/>
         </h:form>
 
       </div>
@@ -51,7 +51,7 @@
             <p:password value="#{profileController.confirmPassword}" class="form-control" id="confirm-password" placeholder="Confirm New Password" required="true" requiredMessage="Password is required"/>
             <p:message for="confirm-password" style="color:red"/>		
           </div>
-          <p:commandButton value="Change" action="#{profileController.changePassword()}" update=":change-messages" class="btn btn-primary"/>
+          <p:commandButton value="Change" action="#{profileController.changePassword()}" update=":change-messages" styleClass="ui-priority-primary"/>
         </h:form>
       </div>
     </div>

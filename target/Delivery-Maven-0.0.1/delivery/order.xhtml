@@ -1,0 +1,39 @@
+<ui:composition template="./../WEB-INF/delivery-layouts/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="main">
+    
+    <h:form>
+      <p:dataTable var="reservation" value="#{dOrderController.reservationList}" >
+
+
+        <p:column headerText="Id">
+          <h:outputText value="#{reservation.id}" />
+        </p:column>
+
+        <p:column headerText="Number Of Items">
+          <h:outputText value="#{reservation.reservationItemList.size()}" />
+        </p:column>
+
+        <p:column headerText="Status">
+          <h:outputText value="#{reservation.status}" />
+        </p:column>
+
+        <p:column headerText="Price">
+          <h:outputText value="#{reservation.totalPrice}" />
+        </p:column>
+        
+        <p:column headerText="Action">
+          <p:commandButton value="View" action="#{dOrderController.view(reservation)}" styleClass="ui-priority-primary" />
+        </p:column>
+
+      </p:dataTable>
+    </h:form>
+    
+  </ui:define>
+
+</ui:composition>

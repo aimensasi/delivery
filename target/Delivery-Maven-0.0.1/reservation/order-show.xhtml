@@ -43,6 +43,35 @@
       </tbody>
     </table>
     
+     <h2 class="title">Customer Details</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Customer ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">E-Wallet Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <h:outputText value="#{showOrderController.customer.id}"/>
+          </th>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.name}" />
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.email}"/>
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.geteWallet().balance}"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
     <h2 class="title mt-4">Order Items</h2>
     
     <p:dataTable var="reservationItem" value="#{showOrderController.reservationItemList}" >
@@ -69,8 +98,8 @@
       
     
     <h:form id="form" class="mt-3">
-      <p:commandButton value="Approve" onclick="PF('deliveryDialog').show()"/>
-      <p:commandButton value="Reject" action="#{showOrderController.reject()}"/>
+      <p:commandButton value="Approve" onclick="PF('deliveryDialog').show()" styleClass="ui-priority-primary"/>
+      <p:commandButton value="Reject" action="#{showOrderController.reject()}" styleClass="ui-button-danger"/>
       
       <p:dialog header="Assign Delivery Staff" widgetVar="deliveryDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:dataTable var="deliveryStaff" value="#{showOrderController.deliveryStaffList}" emptyMessage="No delivery staff available at the moment" >
@@ -83,7 +112,7 @@
           </p:column>
           
           <p:column headerText="Action">
-            <p:commandButton action="#{showOrderController.approve(deliveryStaff)}" value="Assign"></p:commandButton>
+            <p:commandButton action="#{showOrderController.approve(deliveryStaff)}" value="Assign" styleClass="ui-priority-primary"></p:commandButton>
           </p:column>
         </p:dataTable>
       </p:dialog>

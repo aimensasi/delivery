@@ -9,7 +9,6 @@ import com.blank.delivery.models.Reservation;
 import com.blank.delivery.sessionbean.ReservationFacadeLocal;
 import java.io.IOException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;

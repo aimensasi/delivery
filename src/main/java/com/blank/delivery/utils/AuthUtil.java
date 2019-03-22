@@ -50,7 +50,7 @@ public class AuthUtil implements Serializable {
           redirectUrl = "/reservation/dashboard?faces-redirect=true";
           break;
         case Constants.ROLE_DELIVERY_STAFF:
-          redirectUrl = "/management/delivery?faces-redirect=true";
+          redirectUrl = "/delivery/dashboard?faces-redirect=true";
           break;
         case Constants.ROLE_CUSTOMER:
           redirectUrl = "/menu?faces-redirect=true";

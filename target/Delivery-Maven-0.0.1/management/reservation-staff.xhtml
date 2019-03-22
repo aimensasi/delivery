@@ -20,7 +20,7 @@
                 <h:outputText value="Email" />
                 <p:inputText value="#{reservationStaffController.newStaff.email}" />
                 
-                <p:commandButton value="Add" icon="fa fa-fw fa-plus" action="#{reservationStaffController.create()}"/>
+                <p:commandButton value="Add" styleClass="ui-priority-primary" action="#{reservationStaffController.create()}"/>
             </h:panelGrid>
             <p>a default password will be set for this user `secret`</p>
         </h:form>
@@ -35,10 +35,10 @@
               </p:column>
              
               <p:column style="width:100px;text-align: center">
-                <p:commandButton action="#{reservationStaffController.delete(staff)}" value="Delete"></p:commandButton>
+                <p:commandButton action="#{reservationStaffController.delete(staff)}" value="Delete" styleClass="ui-priority-primary"></p:commandButton>
               </p:column>
               <p:column style="width:100px;text-align: center">
-                  <p:commandButton value="Edit" update=":form:EditStaff" oncomplete="PF('editDialog').show()">
+                  <p:commandButton value="Edit" update=":form:EditStaff" oncomplete="PF('editDialog').show()" styleClass="ui-priority-primary">
                     <f:setPropertyActionListener value="#{staff}" target="#{reservationStaffController.selectedStaff}"/>
                   </p:commandButton>
               </p:column>
@@ -51,7 +51,7 @@
                   <h:outputText value="Email: " />
                   <p:inputText value="#{reservationStaffController.selectedStaff.email}" />
                 </h:panelGrid>
-                <p:commandButton value="Update" action="#{reservationStaffController.update()}"/>
+                <p:commandButton value="Update" action="#{reservationStaffController.update()}" styleClass="ui-priority-primary"/>
               </p:outputPanel>
             </p:dialog>
         </h:form>  

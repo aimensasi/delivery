@@ -37,7 +37,7 @@
               <p:password value="#{loginController.password}" class="form-control" id="password" placeholder="Enter Password" required="true" requiredMessage="Password is required"/>
               <p:message for="email" style="color:red"/>		
             </div>
-            <p:commandButton value="Register" action="#{loginController.login()}" update=":messages" class="btn btn-primary"/>
+            <p:commandButton value="Register" action="#{loginController.login()}" update=":messages" styleClass="ui-priority-primary"/>
           </h:form>
         </div>
       </div>

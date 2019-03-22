@@ -9,13 +9,16 @@ com/blank/delivery/sessionbean/EWalletFacade.class
 controller/management/StaffManagementController.class
 com/blank/delivery/models/EWallet.class
 com/blank/delivery/models/ReservationItem.class
+controller/delivery/DashboardController.class
 controller/customer/MenuController.class
+controller/delivery/ShowOrderController.class
 com/blank/delivery/models/Food_.class
 com/blank/delivery/models/Reservation_.class
 controller/reservation/DashboardController.class
 com/blank/delivery/utils/Constants.class
 controller/management/RegisterController.class
 controller/customer/CustomerRegisterController.class
+controller/delivery/OrderController.class
 controller/customer/OrderController.class
 com/blank/delivery/sessionbean/ReservationFacade.class
 controller/customer/EWalletController.class

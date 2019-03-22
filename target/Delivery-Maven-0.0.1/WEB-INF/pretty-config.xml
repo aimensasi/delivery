@@ -89,6 +89,26 @@
 	</url-mapping>
 
 
+  <url-mapping id="delivery-dashboard">
+		<pattern value="/delivery/dashboard" />
+		<view-id value="/delivery/dashboard.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="delivery-orders">
+		<pattern value="/delivery/orders" />
+		<view-id value="/delivery/order.xhtml" />
+	</url-mapping>
+  
+   <url-mapping id="delivery-orders-view">
+		<pattern value="/delivery/orders/#{id}" />
+		<view-id value="/delivery/order-show.xhtml" />
+	</url-mapping>
+  
+  
+  <url-mapping id="delivery-profile">
+		<pattern value="/delivery/profile" />
+		<view-id value="/delivery/profile.xhtml" />
+	</url-mapping>
 
 
 

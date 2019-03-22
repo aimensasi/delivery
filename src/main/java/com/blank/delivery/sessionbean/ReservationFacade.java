@@ -55,9 +55,17 @@ public class ReservationFacade extends AbstractFacade<Reservation> implements Re
 
   @Override
   public List<Reservation> findApprovedOrdersWithDeliverStaff(User deliveryStaff) {
-    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findWithDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "approved");
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findApprovedByDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "approved");
     
     return query.getResultList();
   }
+
+  @Override
+  public List<Reservation> findDeliveredOrdersWithDeliverStaff(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findDeliveredByDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "delivered");
+    
+    return query.getResultList();
+  }
+  
   
 }

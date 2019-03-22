@@ -26,7 +26,7 @@
                 <p:inputText value="#{mFoodController.newFood.quantity}"/>
                 <h:outputText value="Price " />
                 <p:inputText value="#{mFoodController.newFood.price}"/>
-                <p:commandButton value="Add" icon="fa fa-fw fa-plus" action="#{mFoodController.create()}"/>
+                <p:commandButton value="Add" icon="fa fa-fw fa-plus" action="#{mFoodController.create()}" styleClass="ui-priority-primary"/>
             </h:panelGrid>
         </h:form>
         
@@ -48,10 +48,10 @@
                   <h:outputText value="#{food.price}"/>
               </p:column>
               <p:column style="width:100px;text-align: center">
-                <p:commandButton action="#{mFoodController.delete(food)}" value="Delete"></p:commandButton>
+                <p:commandButton action="#{mFoodController.delete(food)}" value="Delete" styleClass="ui-priority-primary"></p:commandButton>
               </p:column>
               <p:column style="width:100px;text-align: center">
-                  <p:commandButton value="Edit" update=":form:foodEdit" oncomplete="PF('editDialog').show()">
+                  <p:commandButton value="Edit" update=":form:foodEdit" oncomplete="PF('editDialog').show()" styleClass="ui-priority-primary">
                     <f:setPropertyActionListener value="#{food}" target="#{mFoodController.selectedFood}"/>
                   </p:commandButton>
               </p:column>
@@ -70,7 +70,7 @@
                   <h:outputText value="Price: " />
                   <p:inputText value="#{mFoodController.selectedFood.price}" />
                 </h:panelGrid>
-                <p:commandButton value="Update" action="#{mFoodController.update()}"/>
+                <p:commandButton value="Update" action="#{mFoodController.update()}" styleClass="ui-priority-primary"/>
               </p:outputPanel>
             </p:dialog>
         </h:form>  

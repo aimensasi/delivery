@@ -40,7 +40,7 @@
               <p:password value="#{customerRegisterController.password}" class="form-control" id="password" placeholder="Enter Password" required="true" requiredMessage="Password is required"/>
               <p:message for="email" style="color:red"/>		
             </div>
-            <p:commandButton value="Register" action="#{customerRegisterController.register()}" update=":messages" class="btn btn-primary"/>
+            <p:commandButton value="Register" action="#{customerRegisterController.register()}" update=":messages" styleClass="ui-priority-primary"/>
           </h:form>
         </div>
       </div>

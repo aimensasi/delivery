@@ -5,3 +5,8 @@
 .full-width, .full-width input{
   width: 100% !important;
 }
+
+.ui-button-danger{
+  background: red;
+  color: white;
+}
