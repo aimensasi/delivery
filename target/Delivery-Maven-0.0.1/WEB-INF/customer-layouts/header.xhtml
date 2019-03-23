@@ -15,12 +15,12 @@
     <ui:composition >
       <h:form class="mb-5">
         <p:menubar>
-          <p:menuitem value="Menu" url="menu"/>
+          <p:menuitem value="Menu" url="/menu"/>
           <p:submenu label="#{dashboardController.getCurrentUserName()}">
-            <p:menuitem value="Profile" url="profile"/>
-            <p:menuitem value="E-Wallet" url="e-wallet"/>
-            <p:menuitem value="Orders" url="orders"/>
-            <p:menuitem value="Feedback" url="feedback"/>
+            <p:menuitem value="Profile" url="/profile"/>
+            <p:menuitem value="E-Wallet" url="/e-wallet"/>
+            <p:menuitem value="Orders" url="/orders"/>
+            <p:menuitem value="Feedback" url="/feedback"/>
             <p:menuitem value="Logout" action="#{loginController.logout()}"/>
           </p:submenu>
         </p:menubar>

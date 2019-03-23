@@ -71,6 +71,7 @@ public class Reservation implements Serializable {
   @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "order_id")
   private List<ReservationItem> reservationItemList = new ArrayList<>();
+  
 
   public Reservation() {
   }

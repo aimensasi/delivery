@@ -1,0 +1,77 @@
+<ui:composition template="./../WEB-INF/customer-layouts/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <ui:define name="main">
+    <h2 class="title">Order Details</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Order ID</th>
+          <th scope="col">Number Of Item</th>
+          <th scope="col">Status</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <h:outputText value="#{orderDetailsController.reservation.id}"/>
+          </th>
+          <td>
+            <h:outputText  value="#{orderDetailsController.reservationItemList.size()}" />
+          </td>
+          <td>
+            <h:outputText  value="#{orderDetailsController.reservation.status}"/>
+          </td>
+          <td>
+            <h:outputText  value="#{orderDetailsController.reservation.totalPrice}"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+       
+    <h2 class="title mt-4">Order Items</h2>
+    
+    <p:dataTable var="reservationItem" value="#{orderDetailsController.reservationItemList}" >
+      <p:column headerText="Id">
+        <h:outputText value="#{reservationItem.id}" />
+      </p:column>
+
+      <p:column headerText="Name">
+        <h:outputText value="#{reservationItem.food.name}" />
+      </p:column>
+
+      <p:column headerText="Unit Price">
+        <h:outputText value="#{reservationItem.food.price}" />
+      </p:column>
+
+      <p:column headerText="Quantity">
+        <h:outputText value="#{reservationItem.quantity}" />
+      </p:column>
+      
+      <p:column headerText="Total Price">
+        <h:outputText value="#{reservationItem.quantity * reservationItem.food.price}" />
+      </p:column>
+    </p:dataTable>
+    
+    <h:form rendered="#{orderDetailsController.feedback != null}">
+        <div class="form-group">
+            <label for="rating">Rate The Delivery Staff Services</label>
+            <p:rating value="#{orderDetailsController.feedback.rating}" stars="5" id="rating" cancel="false"/>
+        </div>
+        <div class="form-group">
+          <label for="feedback">Leave Feedback</label>
+          <p:inputTextarea rows="4" value="#{orderDetailsController.feedback.feedback}" id="feedback"/>		
+        </div>
+
+        <p:commandButton value="Submit" action="#{orderDetailsController.leaveFeedback()}" />
+      </h:form>
+   
+  </ui:define>
+
+</ui:composition>

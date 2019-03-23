@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -30,31 +32,47 @@ import javax.xml.bind.annotation.XmlRootElement;
   , @NamedQuery(name = "Feedback.findById", query = "SELECT f FROM Feedback f WHERE f.id = :id")
   , @NamedQuery(name = "Feedback.findByGivenBy", query = "SELECT f FROM Feedback f WHERE f.givenBy = :givenBy")
   , @NamedQuery(name = "Feedback.findByReceivedBy", query = "SELECT f FROM Feedback f WHERE f.receivedBy = :receivedBy")
-  , @NamedQuery(name = "Feedback.findByRating", query = "SELECT f FROM Feedback f WHERE f.rating = :rating")})
+  , @NamedQuery(name = "Feedback.findByOrderAndGiven", query = "SELECT f FROM Feedback f WHERE f.orderId = :orderId AND f.givenBy = :userId")
+  , @NamedQuery(name = "Feedback.findByRating", query = "SELECT f FROM Feedback f WHERE f.rating = :rating")
+  , @NamedQuery(name = "Feedback.findByCreatedBy", query = "SELECT f FROM Feedback f WHERE f.createdBy = :createdBy")})
 public class Feedback implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
-  @Basic(optional = false)
-  @NotNull
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Integer id;
+  
   @Basic(optional = false)
   @NotNull
   @Column(name = "given_by")
   private int givenBy;
+  
   @Basic(optional = false)
   @NotNull
   @Column(name = "received_by")
   private int receivedBy;
+  
   @Column(name = "rating")
   private Integer rating;
+  
   @Basic(optional = false)
   @NotNull
   @Lob
   @Size(min = 1, max = 65535)
   @Column(name = "feedback")
   private String feedback;
+  
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 255)
+  @Column(name = "created_by")
+  private String createdBy;
+  
+ 
+  @Column(name = "order_id")
+  private int orderId;
+  
 
   public Feedback() {
   }
@@ -63,11 +81,12 @@ public class Feedback implements Serializable {
     this.id = id;
   }
 
-  public Feedback(Integer id, int givenBy, int receivedBy, String feedback) {
+  public Feedback(Integer id, int givenBy, int receivedBy, String feedback, String createdBy) {
     this.id = id;
     this.givenBy = givenBy;
     this.receivedBy = receivedBy;
     this.feedback = feedback;
+    this.createdBy = createdBy;
   }
 
   public Integer getId() {
@@ -110,6 +129,24 @@ public class Feedback implements Serializable {
     this.feedback = feedback;
   }
 
+  public String getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(String createdBy) {
+    this.createdBy = createdBy;
+  }
+
+  public int getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(int orderId) {
+    this.orderId = orderId;
+  }
+
+  
+  
   @Override
   public int hashCode() {
     int hash = 0;

@@ -126,14 +126,23 @@
 		<pattern value="/feedback" />
 		<view-id value="/customer/feedback.xhtml" />
 	</url-mapping>
+  
   <url-mapping id="order">
 		<pattern value="/orders" />
 		<view-id value="/customer/orders.xhtml" />
 	</url-mapping>
+  
+  <url-mapping id="customer-order-details">
+		<pattern value="/orders/#{id}" />
+		<view-id value="/customer/order-show.xhtml" />
+  </url-mapping>
+
   <url-mapping id="profile">
 		<pattern value="/profile" />
 		<view-id value="/customer/profile.xhtml" />
 	</url-mapping>
+  
+  
   
  
 </pretty-config>

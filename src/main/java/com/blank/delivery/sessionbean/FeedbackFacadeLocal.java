@@ -6,6 +6,8 @@
 package com.blank.delivery.sessionbean;
 
 import com.blank.delivery.models.Feedback;
+import com.blank.delivery.models.Reservation;
+import com.blank.delivery.models.User;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,7 @@ public interface FeedbackFacadeLocal {
   List<Feedback> findRange(int[] range);
 
   int count();
+  
+  Feedback getOrCreate(User user, Reservation reservation);
   
 }
