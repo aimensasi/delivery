@@ -36,4 +36,6 @@ public interface ReservationFacadeLocal {
   List<Reservation> findApprovedOrdersWithDeliverStaff(User deliveryStaff);
   
   List<Reservation> findDeliveredOrdersWithDeliverStaff(User deliveryStaff);
+  
+  List<Reservation> findByDeliveryStaffId(User deliveryStaff);
 }

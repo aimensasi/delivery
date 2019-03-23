@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.customer;
+package controller.delivery;
 
 import com.blank.delivery.models.Feedback;
 import com.blank.delivery.models.User;
 import com.blank.delivery.sessionbean.FeedbackFacadeLocal;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
+import com.blank.delivery.utils.Constants;
 import com.blank.delivery.utils.SessionUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -16,23 +17,25 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author aimen.s.a.sasi
  */
-@Named(value = "cFeedbackController")
+@Named(value = "dDeedbackController")
 @RequestScoped
 public class FeedbackController {
-
+  
   @EJB private UserFacadeLocal userFacade;
   
   @EJB
   private FeedbackFacadeLocal feedbackFacade;
   
-  private User customer;
+  private User deliveryStaff;
   private List<Feedback> feedbackList;
   
+
   /**
    * Creates a new instance of FeedbackController
    */
@@ -44,8 +47,8 @@ public class FeedbackController {
   public void onInit(){
     int id = SessionUtil.getUserId();
     
-    customer = userFacade.find(id);
-    feedbackList = feedbackFacade.findByReceivedBy(customer);
+    deliveryStaff = userFacade.find(id);
+    feedbackList = feedbackFacade.findByReceivedBy(deliveryStaff);
   }
 
   @PreDestroy
@@ -60,4 +63,5 @@ public class FeedbackController {
     this.feedbackList = feedbackList;
   }
 
+  
 }

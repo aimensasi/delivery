@@ -1,4 +1,4 @@
-<ui:composition template="./../WEB-INF/customer-layouts/master.xhtml"
+<ui:composition template="./../WEB-INF/delivery-layouts/master.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -11,7 +11,7 @@
     
     <h2 class="title mt-4">Feedbacks From Customers</h2>
     
-    <p:dataTable var="feedback" value="#{cFeedbackController.feedbackList}" >
+    <p:dataTable var="feedback" value="#{dDeedbackController.feedbackList}" >
       <p:column headerText="ID">
         <h:outputText value="#{feedback.id}" />
       </p:column>

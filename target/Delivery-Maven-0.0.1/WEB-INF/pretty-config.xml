@@ -104,7 +104,12 @@
 		<view-id value="/delivery/order-show.xhtml" />
 	</url-mapping>
   
-  
+  <url-mapping id="delivery-feedback">
+		<pattern value="/delivery/feedbacks" />
+		<view-id value="/delivery/feedback.xhtml" />
+  </url-mapping>
+
+
   <url-mapping id="delivery-profile">
 		<pattern value="/delivery/profile" />
 		<view-id value="/delivery/profile.xhtml" />

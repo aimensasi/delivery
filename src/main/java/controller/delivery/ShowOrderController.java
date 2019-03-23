@@ -5,10 +5,12 @@
  */
 package controller.delivery;
 
+import com.blank.delivery.models.Feedback;
 import controller.reservation.*;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.ReservationItem;
 import com.blank.delivery.models.User;
+import com.blank.delivery.sessionbean.FeedbackFacadeLocal;
 import com.blank.delivery.sessionbean.ReservationFacadeLocal;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
@@ -37,12 +39,17 @@ public class ShowOrderController implements Serializable {
   private ReservationFacadeLocal reservationFacade;
   
   @EJB private UserFacadeLocal userFacade;
+  
+  @EJB
+  private FeedbackFacadeLocal feedbackFacade;
 
 //   order id from request param
   private String id;
   private Reservation reservation;
   private List<ReservationItem> reservationItemList;
   private User customer;
+  private User deliveryStaff;
+  private Feedback feedback;
    
    
   /**
@@ -61,6 +68,7 @@ public class ShowOrderController implements Serializable {
       redirectBack();
     }
     
+    
     reservation = reservationFacade.find(Integer.valueOf(id));
     
     if (reservation == null) {
@@ -69,6 +77,12 @@ public class ShowOrderController implements Serializable {
     
     reservationItemList = reservation.getReservationItemList();
     customer = reservation.getCustomer();
+    deliveryStaff = reservation.getDeliveryStaff();
+    
+    if (reservation.getStatus().equals("delivered")) {
+      feedback = feedbackFacade.getOrCreate(deliveryStaff, reservation);
+      feedback.setCreatedBy(Constants.ROLE_DELIVERY_STAFF);
+    }
   }
 
   @PreDestroy
@@ -107,16 +121,38 @@ public class ShowOrderController implements Serializable {
     this.customer = customer;
   }
 
+  public Feedback getFeedback() {
+    return feedback;
+  }
+
+  public void setFeedback(Feedback feedback) {
+    this.feedback = feedback;
+  }
   
   
- 
+
+  
   public void delivered(){
+    if (reservation.getStatus().equals("delivered")) {
+      return;
+    }
     reservation.setStatus("delivered");
     
     reservationFacade.edit(reservation);
     
-    refresh();
+    redirectBack();
   }
+  
+  public void leaveFeedback(){
+    if (feedback.getReceivedBy() == 0) {
+      feedback.setReceivedBy(customer.getId());
+      feedbackFacade.create(feedback);
+    }else{
+      feedbackFacade.edit(feedback);
+    }
+      
+    redirectBack();
+  }  
     
   
   private void refresh(){    

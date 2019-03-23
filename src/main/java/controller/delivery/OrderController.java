@@ -50,7 +50,7 @@ public class OrderController {
     
     currentDeliverystaff = userFacade.find(id);
     
-    reservationList = reservationFacade.findApprovedOrdersWithDeliverStaff(currentDeliverystaff);
+    reservationList = reservationFacade.findByDeliveryStaffId(currentDeliverystaff);
   }
 
   @PreDestroy

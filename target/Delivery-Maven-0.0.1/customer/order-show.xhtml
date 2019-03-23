@@ -60,17 +60,17 @@
     </p:dataTable>
     
     <h:form rendered="#{orderDetailsController.feedback != null}">
-        <div class="form-group">
-            <label for="rating">Rate The Delivery Staff Services</label>
-            <p:rating value="#{orderDetailsController.feedback.rating}" stars="5" id="rating" cancel="false"/>
-        </div>
-        <div class="form-group">
-          <label for="feedback">Leave Feedback</label>
-          <p:inputTextarea rows="4" value="#{orderDetailsController.feedback.feedback}" id="feedback"/>		
-        </div>
+      <div class="form-group">
+          <label for="rating">Rate The Delivery Staff Services</label>
+          <p:rating value="#{orderDetailsController.feedback.rating}" stars="5" id="rating" cancel="false"/>
+      </div>
+      <div class="form-group">
+        <label for="feedback">Leave Feedback</label>
+        <p:inputTextarea rows="4" value="#{orderDetailsController.feedback.feedback}" id="feedback"/>		
+      </div>
 
-        <p:commandButton value="Submit" action="#{orderDetailsController.leaveFeedback()}" />
-      </h:form>
+      <p:commandButton value="Submit" action="#{orderDetailsController.leaveFeedback()}" />
+    </h:form>
    
   </ui:define>
 

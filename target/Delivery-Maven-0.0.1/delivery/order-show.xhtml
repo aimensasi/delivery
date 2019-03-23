@@ -68,6 +68,20 @@
       <p:commandButton value="Mark as delivered" action="#{dShowOrderController.delivered()}" styleClass="ui-priority-primary"/>
     </h:form>
     
+    
+    <h:form rendered="#{dShowOrderController.feedback != null}" class="mt-4">
+      <div class="form-group">
+          <label for="rating">Rate The Delivery Staff Services</label>
+          <p:rating value="#{dShowOrderController.feedback.rating}" stars="5" id="rating" cancel="false"/>
+      </div>
+      <div class="form-group">
+        <label for="feedback">Leave Feedback</label>
+        <p:inputTextarea rows="4" value="#{dShowOrderController.feedback.feedback}" id="feedback"/>		
+      </div>
+
+      <p:commandButton value="Submit" action="#{dShowOrderController.leaveFeedback()}" />
+    </h:form>
+    
   </ui:define>
 
 </ui:composition>

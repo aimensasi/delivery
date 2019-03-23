@@ -8,6 +8,7 @@ package com.blank.delivery.sessionbean;
 import com.blank.delivery.models.Feedback;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -44,6 +45,13 @@ public class FeedbackFacade extends AbstractFacade<Feedback> implements Feedback
       feedback.setOrderId(reservation.getId());
     }
     return feedback;
+  }
+
+  @Override
+  public List<Feedback> findByReceivedBy(User user) {
+    TypedQuery<Feedback> query = em.createNamedQuery("Feedback.findByReceivedBy", Feedback.class).setParameter("receivedBy", user.getId());
+    
+    return query.getResultList();
   }
   
   

@@ -55,7 +55,6 @@ public class OrderDetailsController {
   
   @PostConstruct
   public void onInit(){
-    System.out.println("controller.reservation.ShowOrderController.onInit()");
     id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
     
     if (id == null) {
@@ -70,8 +69,6 @@ public class OrderDetailsController {
     
     reservationItemList = reservation.getReservationItemList();
     currentCustomer = reservation.getCustomer();
-    
-    
     deliveryStaff = reservation.getDeliveryStaff();
     
    

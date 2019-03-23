@@ -12,9 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -72,6 +74,14 @@ public class Feedback implements Serializable {
  
   @Column(name = "order_id")
   private int orderId;
+  
+  @OneToOne()
+  @JoinColumn(name = "order_id", insertable = false, updatable = false)
+  private Reservation order;
+  
+  @OneToOne()
+  @JoinColumn(name = "given_by", insertable = false, updatable = false)
+  private User sender;
   
 
   public Feedback() {
@@ -143,6 +153,22 @@ public class Feedback implements Serializable {
 
   public void setOrderId(int orderId) {
     this.orderId = orderId;
+  }
+
+  public Reservation getOrder() {
+    return order;
+  }
+
+  public void setOrder(Reservation order) {
+    this.order = order;
+  }
+
+  public User getSender() {
+    return sender;
+  }
+
+  public void setSender(User sender) {
+    this.sender = sender;
   }
 
   

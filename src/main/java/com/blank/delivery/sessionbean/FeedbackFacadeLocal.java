@@ -34,4 +34,6 @@ public interface FeedbackFacadeLocal {
   
   Feedback getOrCreate(User user, Reservation reservation);
   
+  List<Feedback> findByReceivedBy(User user);
+  
 }

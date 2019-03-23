@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.customer;
+package controller.management;
 
 import com.blank.delivery.models.Feedback;
 import com.blank.delivery.models.User;
@@ -21,7 +21,7 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author aimen.s.a.sasi
  */
-@Named(value = "cFeedbackController")
+@Named(value = "mFeedbackController")
 @RequestScoped
 public class FeedbackController {
 
@@ -29,8 +29,6 @@ public class FeedbackController {
   
   @EJB
   private FeedbackFacadeLocal feedbackFacade;
-  
-  private User customer;
   private List<Feedback> feedbackList;
   
   /**
@@ -39,13 +37,9 @@ public class FeedbackController {
   public FeedbackController() {
   }
   
-  
   @PostConstruct
   public void onInit(){
-    int id = SessionUtil.getUserId();
-    
-    customer = userFacade.find(id);
-    feedbackList = feedbackFacade.findByReceivedBy(customer);
+    feedbackList = feedbackFacade.findAll();
   }
 
   @PreDestroy
@@ -59,5 +53,5 @@ public class FeedbackController {
   public void setFeedbackList(List<Feedback> feedbackList) {
     this.feedbackList = feedbackList;
   }
-
+  
 }

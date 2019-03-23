@@ -66,6 +66,14 @@ public class ReservationFacade extends AbstractFacade<Reservation> implements Re
     
     return query.getResultList();
   }
+
+  @Override
+  public List<Reservation> findByDeliveryStaffId(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findByDeliveryStaffId", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId());
+    
+    return query.getResultList();
+  }
+  
   
   
 }
