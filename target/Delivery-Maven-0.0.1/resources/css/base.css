@@ -20,3 +20,26 @@
   margin-right: auto;
   font-weight: 400 !important;
 }
+
+
+.header .ui-menu{
+  border-radius: 0;
+  background: white;
+  border: none;
+  padding-top: 1rem;
+  padding-bottom: 0.9rem;
+}
+
+.header .ui-menu.ui-widget li > .ui-menuitem-link{
+  padding: 0.5rem 2.5rem;
+  background: none;
+  transition: all 0.5s ease;
+  border-radius: 50px;
+  color: #333333 !important;
+}
+
+.header .ui-menu.ui-widget li > .ui-menuitem-link:hover{
+  opacity: 0.5;
+}
+
+

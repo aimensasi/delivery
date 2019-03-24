@@ -5,21 +5,21 @@
       xmlns:p="http://primefaces.org/ui">
   
   
-      <h:form class="mb-5">
-        <p:menubar>
-          <p:menuitem value="Dashboard" url="/management/dashboard" />
-          <p:menuitem value="Customers" url="/management/customers" />
-          <p:menuitem value="Foods" url="/management/food" />
-          <p:menuitem value="FeedBack" url="/management/feedback" />
-          <p:submenu label="Staff Management">
-            <p:menuitem value="Management Staff" url="/management/management-staff"/>
-            <p:menuitem value="Reservation Staff" url="/management/reservation-staff"/>
-            <p:menuitem value="Delivery Staff" url="/management/delivery-staff"/>
-          </p:submenu>
-          <p:submenu label="#{dashboardController.getCurrentUserName()}">
-            <p:menuitem value="Profile" url="profile"/>
-            <p:menuitem value="Logout" action="#{loginController.logout()}"/>
-          </p:submenu>
-        </p:menubar>
-      </h:form>
-    </ui:composition>
+  <h:form class="mb-5">
+    <p:menubar>
+      <p:menuitem value="Dashboard" url="/management/dashboard" />
+      <p:menuitem value="Customers" url="/management/customers" />
+      <p:menuitem value="Foods" url="/management/food" />
+      <p:menuitem value="FeedBack" url="/management/feedback" />
+      <p:submenu label="Staff Management">
+        <p:menuitem value="Management Staff" url="/management/management-staff"/>
+        <p:menuitem value="Reservation Staff" url="/management/reservation-staff"/>
+        <p:menuitem value="Delivery Staff" url="/management/delivery-staff"/>
+      </p:submenu>
+      <p:submenu label="#{dashboardController.getCurrentUserName()}">
+        <p:menuitem value="Profile" url="profile"/>
+        <p:menuitem value="Logout" action="#{loginController.logout()}"/>
+      </p:submenu>
+    </p:menubar>
+  </h:form>
+</ui:composition>
