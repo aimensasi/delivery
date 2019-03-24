@@ -1,6 +1,7 @@
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/models/Reservation.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/models/Food.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/sessionbean/AbstractFacade.java
+/Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/delivery/FeedbackController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/sessionbean/EWalletFacadeLocal.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/utils/Constants.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/management/DashboardController.java
@@ -8,6 +9,7 @@
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/management/ReservationStaffController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/reservation/OrderController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/customer/OrderDetailsController.java
+/Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/management/FeedbackController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/sessionbean/FeedbackFacadeLocal.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/sessionbean/FeedbackFacade.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/reservation/DashboardController.java
@@ -40,5 +42,4 @@
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/com/blank/delivery/sessionbean/FoodFacadeLocal.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/customer/FeedbackController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/ProfileController.java
-/Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/customer/CreateFeedbackController.java
 /Users/aimen.s.a.sasi/NetBeansProjects/Delivery-Maven/src/main/java/controller/customer/CustomerRegisterController.java

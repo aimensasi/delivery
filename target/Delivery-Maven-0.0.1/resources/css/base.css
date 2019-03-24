@@ -10,3 +10,13 @@
   background: red;
   color: white;
 }
+
+.btn-login{
+  width: 181px;
+  height: 39px;
+  padding: 4px 0 !important;
+  border-radius: 66px !important;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400 !important;
+}

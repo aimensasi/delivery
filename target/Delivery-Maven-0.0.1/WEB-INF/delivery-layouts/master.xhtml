@@ -18,6 +18,7 @@
     
     <f:metadata>
       <f:event type="preRenderView" listener="#{authUtil.isAuthenticated()}"/>
+      <f:event type="preRenderView" listener="#{authUtil.onlyDeliveryStaff()}"/>
     </f:metadata>
   </h:head>
 

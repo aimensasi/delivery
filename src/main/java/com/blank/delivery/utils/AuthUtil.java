@@ -92,16 +92,80 @@ public class AuthUtil implements Serializable {
       } catch (IOException e) {
         System.out.println("com.blank.delivery.utils.AuthUtil.isGuest()  " + e.getMessage());
       }
-      
-      return;
     }
+  }
+  
+  public void onlyManagementStaff(){
+    Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
+     
+    switch(roleTypeSession.toString()){
+      case Constants.ROLE_RESERVATION_STAFF:
+        redirectTo("/reservation/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_DELIVERY_STAFF:
+        redirectTo("/delivery/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_CUSTOMER:
+        redirectTo("/menu?faces-redirect=true");
+        break;
+    }
+  }
+  
+  public void onlyReservationStaff(){
+    Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
+     
+    switch(roleTypeSession.toString()){
+      case Constants.ROLE_MANAGEMENT_STAFF:
+        redirectTo("/management/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_DELIVERY_STAFF:
+        redirectTo("/delivery/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_CUSTOMER:
+        redirectTo("/menu?faces-redirect=true");
+        break;
+    }
+  }
+  
+  public void onlyDeliveryStaff(){
+    Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
     
-//    Check if the user is verified
+    switch(roleTypeSession.toString()){
+      case Constants.ROLE_MANAGEMENT_STAFF:
+        redirectTo("/management/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_RESERVATION_STAFF:
+        redirectTo("/reservation/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_CUSTOMER:
+        redirectTo("/menu?faces-redirect=true");
+        break;
+    }
+  }
+  
+  public void onlyCustomerStaff(){
+    Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
+         
+    switch(roleTypeSession.toString()){
+      case Constants.ROLE_MANAGEMENT_STAFF:
+        redirectTo("/management/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_RESERVATION_STAFF:
+        redirectTo("/reservation/dashboard?faces-redirect=true");
+        break;
+      case Constants.ROLE_DELIVERY_STAFF:
+        redirectTo("/delivery/dashboard?faces-redirect=true");
+        break;
+    }
+  }
+  
+  private void redirectTo(String url){
+    ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
     
-//    User user = userFacade.find(userIdSession);
-//    
-//    if (user.getRole().equals(Constants.ROLE_CUSTOMER)) {
-//      
-//    }
+    try {
+      context.redirect(context.getRequestContextPath() + url);
+    } catch (IOException e) {
+      System.out.println("com.blank.delivery.utils.AuthUtil.OnlyManagementStaff() " + e.getMessage());
+    }
   }
 }
