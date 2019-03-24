@@ -82,6 +82,15 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     
     return query.getResultList();
   }
+
+  @Override
+  public Boolean isUniqueIC(String IC) {
+    TypedQuery<User> query = em.createNamedQuery("User.findByIC", User.class).setParameter("ic", IC);
+    
+    return query.getResultList().isEmpty();
+  }
+  
+  
   
    
 }

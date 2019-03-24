@@ -42,4 +42,30 @@
   opacity: 0.5;
 }
 
+.card-stats .card-body{
+  padding: 15px 15px 0px;
+}
+.card-stats .card-body .numbers{
+  text-align: left;
+} 
 
+.card-stats .card-body .numbers p{
+  margin-bottom: 0;
+} 
+
+.card-stats .card-body .numbers h4{
+  
+} 
+
+.card-stats .card-footer{
+  padding: 0px 15px 10px 15px;
+} 
+
+.card-stats .card-body .icon-big {
+  font-size: 3em;
+  min-height: 64px;
+} 
+
+.card-stats .card-body i {
+  line-height: 59px;
+}

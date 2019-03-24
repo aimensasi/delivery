@@ -97,6 +97,10 @@ public class AuthUtil implements Serializable {
   
   public void onlyManagementStaff(){
     Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
+    
+    if (roleTypeSession == null) {
+      roleTypeSession = "";
+    }
      
     switch(roleTypeSession.toString()){
       case Constants.ROLE_RESERVATION_STAFF:
@@ -114,6 +118,10 @@ public class AuthUtil implements Serializable {
   public void onlyReservationStaff(){
     Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
      
+    if (roleTypeSession == null) {
+      roleTypeSession = "";
+    }
+    
     switch(roleTypeSession.toString()){
       case Constants.ROLE_MANAGEMENT_STAFF:
         redirectTo("/management/dashboard?faces-redirect=true");
@@ -129,6 +137,10 @@ public class AuthUtil implements Serializable {
   
   public void onlyDeliveryStaff(){
     Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
+    
+    if (roleTypeSession == null) {
+      roleTypeSession = "";
+    }
     
     switch(roleTypeSession.toString()){
       case Constants.ROLE_MANAGEMENT_STAFF:
@@ -146,6 +158,10 @@ public class AuthUtil implements Serializable {
   public void onlyCustomerStaff(){
     Object roleTypeSession = SessionUtil.getAttribute(Constants.ROLE_TYPE);
          
+    if (roleTypeSession == null) {
+      roleTypeSession = "";
+    }
+    
     switch(roleTypeSession.toString()){
       case Constants.ROLE_MANAGEMENT_STAFF:
         redirectTo("/management/dashboard?faces-redirect=true");

@@ -15,6 +15,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -23,18 +24,13 @@ import javax.faces.context.FacesContext;
  * @author aimen.s.a.sasi
  */
 @Named(value = "registerController")
-@SessionScoped
+@RequestScoped
 public class RegisterController implements Serializable {
 
   
   @EJB
   private UserFacadeLocal userFacade;
   private User user;
-  private String name;
-  private String email;
-  private String password;
-  
-  private String message;
   
   /**
    * Creates a new instance of RegisterController
@@ -43,35 +39,38 @@ public class RegisterController implements Serializable {
 
   @PostConstruct
   public void onInit(){
-    
+    user = new User();
+    user.setRole(Constants.ROLE_MANAGEMENT_STAFF);
+    user.setIsVerified(true);
   }
 
   @PreDestroy
   public void onDestroy(){
 
   }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
   
   
   public String register(){
     
-    if (!userFacade.isUniqueEmail(email)) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Or Password is inncorect", null));    
+    if (!userFacade.isUniqueEmail(user.getEmail()) || !userFacade.isUniqueIC(user.getIc())) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Or IC has already been taken", null));    
       return null;
     }
     
-    user = new User();
-    
-    user.setName(name);
-    user.setEmail(email);
-    user.setPassword(password);
-    user.setRole(Constants.ROLE_MANAGEMENT_STAFF);
-
     
     
     try {
       userFacade.create(user);
      
-      SessionUtil.setAttribue(Constants.ROLE_TYPE, Constants.ROLE_MANAGEMENT_STAFF);
+      SessionUtil.setAttribue(Constants.ROLE_TYPE, user.getRole());
       SessionUtil.setAttribue(Constants.USER_ID, user.getId());
       
       return "/management/dashboard?faces-redirect=true";
@@ -81,37 +80,5 @@ public class RegisterController implements Serializable {
     }
 
     return null;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 }

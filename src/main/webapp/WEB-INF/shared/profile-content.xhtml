@@ -4,57 +4,104 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
         
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8 mx-auto">
-        <div class="row mt-5">
-          <h3 class="text-center">Edit Profile</h3>
-        </div>
-        <p:messages id="edit-messages"/>
-
-        <h:form>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <p:inputText value="#{profileController.currentUser.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
-            <p:message for="name" style="color:red"/>		
-          </div>
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <p:inputText value="#{profileController.currentUser.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
-            <p:message for="email" style="color:red"/>		
-          </div>
-          <p:commandButton value="Update" action="#{profileController.update()}" update=":edit-messages" styleClass="ui-priority-primary"/>
-        </h:form>
-
-      </div>
-    </div>
-    <div class="row my-5">
-      <div class="col-md-8 mx-auto">
-        <div class="row mt-5">
-          <h3 class="text-center">Change Password</h3>
-        </div>
-        <p:messages id="change-messages"/>
-
-        <h:form>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <p:password value="#{profileController.currentPassword}" class="form-control" id="password" placeholder="Current Password" required="true" requiredMessage="Password is required"/>
-            <p:message for="password" style="color:red"/>		
-          </div>
-          <div class="form-group">
-            <label for="new-password">Password</label>
-            <p:password value="#{profileController.password}" class="form-control" id="new-password" placeholder="New Password" required="true" requiredMessage="Password is required"/>
-            <p:message for="new-password" style="color:red"/>		
-          </div>
-          <div class="form-group">
-            <label for="confirm-password">Password</label>
-            <p:password value="#{profileController.confirmPassword}" class="form-control" id="confirm-password" placeholder="Confirm New Password" required="true" requiredMessage="Password is required"/>
-            <p:message for="confirm-password" style="color:red"/>		
-          </div>
-          <p:commandButton value="Change" action="#{profileController.changePassword()}" update=":change-messages" styleClass="ui-priority-primary"/>
-        </h:form>
-      </div>
-    </div>
-  </div>
   
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Edit Profile</h2>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <h:form id="edit-profile"> 
+          <p:messages id="profile-message"/>
+          <div class="row">
+            <div class="col-3 mb-2">
+              <label for="name">Name</label>
+              <p:inputText value="#{profileController.currentUser.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
+              <p:message for="name" style="color:red"/>
+            </div>
+            <div class="col-3 mb-2">
+              <label for="email">Email</label>
+              <p:inputText value="#{profileController.currentUser.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
+              <p:message for="email" style="color:red"/>
+            </div>
+            <div class="col-3 mb-2">
+              <label for="ic">IC</label>
+              <p:inputText value="#{profileController.currentUser.ic}" class="form-control" id="ic" placeholder="Enter IC" required="true" requiredMessage="IC is required"/>
+              <p:message for="ic" style="color:red"/>
+            </div>
+            <div class="col-3 mb-2">
+              <label for="phone">Phone Number</label>
+              <p:inputText value="#{profileController.currentUser.phone}" class="form-control" id="phone" placeholder="Enter Phone Number" required="true" requiredMessage="Phone Number is required"/>
+              <p:message for="phone" style="color:red"/>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-3 mb-2">
+              <label for="gender">Gender</label>
+              <p:selectOneMenu id="gender" value="#{profileController.currentUser.gender}" style="width: 100%" required="true" requiredMessage="Gender is required">
+                  <f:selectItem itemLabel="Male" itemValue="male" />
+                  <f:selectItem itemLabel="Female" itemValue="female" />
+              </p:selectOneMenu>
+              <p:message for="gender" style="color:red"/>
+            </div>
+            <div class="col-9 mb-2">
+              <label for="address">Address</label>
+              <p:inputText value="#{profileController.currentUser.address}" class="form-control" id="address" placeholder="Enter Address" required="true" requiredMessage="Address is required"/>
+              <p:message for="address" style="color:red"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 d-flex">
+              <p:commandButton value="Update" update=":edit-profile:profile-message" action="#{profileController.update()}" styleClass="ui-priority-primary ml-auto mt-3"/>
+            </div>
+          </div>
+        </h:form>
+      </div>
+    </div>
+    
+    
+    <div class="py-5 text-center">
+      <h2>Change Password</h2>
+    </div>
+    
+    <div class="row mb-5">
+      <div class="col-12">
+        <h:form id="change-password">  
+          <p:messages id="password-message"/>
+          <div class="row">
+            <div class="col-12 mb-2">
+              <label for="password">Password</label>
+              <p:password feedback="true" value="#{profileController.currentPassword}" class="form-control" id="password" placeholder="Current Password" required="true" requiredMessage="Password is required">
+                <f:validateLength minimum="6" ></f:validateLength>
+              </p:password>
+              <p:message for="password" style="color:red"/>		
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mb-2">
+              <label for="new-password">Password</label>
+              <p:password feedback="true" value="#{profileController.password}" class="form-control" id="new-password" placeholder="New Password" required="true" requiredMessage="Password is required">
+                <f:validateLength minimum="6" ></f:validateLength>
+              </p:password>
+              <p:message for="new-password" style="color:red"/>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="confirm-password">Password</label>
+              <p:password feedback="true" value="#{profileController.confirmPassword}" class="form-control" id="confirm-password" placeholder="Confirm New Password" required="true" requiredMessage="Password is required">
+                <f:validateLength minimum="6" ></f:validateLength>
+              </p:password>
+              <p:message for="confirm-password" style="color:red"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 d-flex">
+              <p:commandButton value="Change Password" update=":change-password:password-message" action="#{profileController.changePassword()}" styleClass="ui-priority-primary ml-auto mt-3"/>
+            </div>
+          </div>
+        </h:form>
+      </div>
+    </div>
+  </div>  
 </ui:composition>

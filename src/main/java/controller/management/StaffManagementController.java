@@ -5,9 +5,7 @@
  */
 package controller.management;
 
-import com.blank.delivery.models.Food;
 import com.blank.delivery.models.User;
-import com.blank.delivery.sessionbean.UserFacade;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
 import com.blank.delivery.utils.SessionUtil;

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
   , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
   , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
   , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+  , @NamedQuery(name = "User.findByIC", query = "SELECT u FROM User u WHERE u.ic = :ic")
   , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
   , @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role")
   , @NamedQuery(name = "User.findByRoleExceptCurrent", query = "SELECT u FROM User u WHERE u.id != :id AND u.role = :role")
@@ -71,6 +72,31 @@ public class User implements Serializable {
   @Size(max = 255)
   @Column(name = "role", length = 255)
   private String role;
+  
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "ic", length = 255)
+  private String ic;
+  
+  @Size(max = 50)
+  @NotNull
+  @Column(name = "gender", length = 50)
+  private String gender;
+  
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "phone", length = 255)
+  private String phone;
+  
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "address", length = 255)
+  private String address;
+  
+  
+  @Column(name = "is_verified")
+  private Boolean isVerified;
+  
   
   @OneToMany(mappedBy = "customer")
   private List<Reservation> reservations;
@@ -152,6 +178,46 @@ public class User implements Serializable {
   public void seteWallet(EWallet eWallet) {
     this.eWallet = eWallet;
   }
+
+  public String getIc() {
+    return ic;
+  }
+
+  public void setIc(String ic) {
+    this.ic = ic;
+  }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public boolean getIsVerified() {
+    return isVerified;
+  }
+
+  public void setIsVerified(Boolean isVerified) {
+    this.isVerified = isVerified;
+  }
   
 
   @Override
@@ -176,7 +242,7 @@ public class User implements Serializable {
 
   @Override
   public String toString() {
-    return "com.blank.delivery.models.User[ id=" + id + " ]";
+    return "com.blank.delivery.models.User[ id=" + id + " : " + name + " : " + email + password + role + ic + gender + phone + address + isVerified + " ]";
   }
   
 }

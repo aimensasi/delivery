@@ -1,62 +1,150 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="./../WEB-INF/management-layouts/master.xhtml"
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    xmlns:h="http://java.sun.com/jsf/html"
+                    xmlns:f="http://java.sun.com/jsf/core"
+                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    xmlns:p="http://primefaces.org/ui">
 
-  <h:head>
-  </h:head>
-  <h:body>
-    <ui:composition template="./../WEB-INF/management-layouts/master.xhtml">
+  <ui:define name="main"> 
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Reservation Staff</h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <h:form id="res-create-form">            
+            <div class="row">
+              <div class="col-3 mb-2">
+                <label for="name">Name</label>
+                <p:inputText value="#{reservationStaffController.newStaff.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
+                <p:message for="name" style="color:red"/>
+              </div>
+              <div class="col-3 mb-2">
+                <label for="email">Email</label>
+                <p:inputText value="#{reservationStaffController.newStaff.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
+                <p:message for="email" style="color:red"/>
+              </div>
+              <div class="col-3 mb-2">
+                <label for="ic">IC</label>
+                <p:inputText value="#{reservationStaffController.newStaff.ic}" class="form-control" id="ic" placeholder="Enter IC" required="true" requiredMessage="IC is required"/>
+                <p:message for="ic" style="color:red"/>
+              </div>
+              <div class="col-3 mb-2">
+                <label for="phone">Phone Number</label>
+                <p:inputText value="#{reservationStaffController.newStaff.phone}" class="form-control" id="phone" placeholder="Enter Phone Number" required="true" requiredMessage="Phone Number is required"/>
+                <p:message for="phone" style="color:red"/>
+              </div>
+            </div>
+            
+            <div class="row mt-3">
+              <div class="col-3 mb-2">
+                <label for="gender">Gender</label>
+                <p:selectOneMenu id="gender" value="#{reservationStaffController.newStaff.gender}" style="width: 100%" required="true" requiredMessage="Gender is required">
+                    <f:selectItem itemLabel="Male" itemValue="male" />
+                    <f:selectItem itemLabel="Female" itemValue="female" />
+                </p:selectOneMenu>
+                <p:message for="gender" style="color:red"/>
+              </div>
+              <div class="col-9 mb-2">
+                <label for="address">Address</label>
+                <p:inputText value="#{reservationStaffController.newStaff.address}" class="form-control" id="address" placeholder="Enter Address" required="true" requiredMessage="Address is required"/>
+                <p:message for="address" style="color:red"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex">
+                <p:commandButton value="Create Staff Member" action="#{reservationStaffController.create()}" styleClass="ui-priority-primary ml-auto mt-3"/>
+              </div>
+            </div>
+          </h:form>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <p:dataTable value="#{reservationStaffController.getStaffList()}" var="staff" rowKey="#{staff.id}" class="table mt-5">
+            <p:column headerText="Name">
+              <h:outputText value="#{staff.name}"/>
+            </p:column>
+            <p:column headerText="Email">
+              <h:outputText value="#{staff.email}"/>
+            </p:column>
+            <p:column headerText="IC">
+              <h:outputText value="#{staff.ic}"/>
+            </p:column>
+            <p:column headerText="Phone Number">
+              <h:outputText value="#{staff.phone}"/>
+            </p:column>
+            <p:column headerText="Gender">
+              <h:outputText value="#{staff.gender}"/>
+            </p:column>
+            <p:column headerText="Address">
+              <h:outputText value="#{staff.address}"/>
+            </p:column>
 
-      <ui:define name="main"> 
-        
-        <h:form>
-            <h:panelGrid columns="12" cellpadding="8">
-                <h:outputText value="Name " />
-                <p:inputText value="#{reservationStaffController.newStaff.name}"/>
-                <h:outputText value="Email" />
-                <p:inputText value="#{reservationStaffController.newStaff.email}" />
-                
-                <p:commandButton value="Add" styleClass="ui-priority-primary" action="#{reservationStaffController.create()}"/>
-            </h:panelGrid>
-            <p>a default password will be set for this user `secret`</p>
-        </h:form>
-        
-        <h:form id="form">
-          <p:dataTable value="#{reservationStaffController.getStaffList()}" var="staff" style="margin: 2em;" rowKey="#{staff.id}">
-              <p:column headerText="Name">
-                <h:outputText value="#{staff.name}"/>
-              </p:column>
-              <p:column headerText="Email">
-                <h:outputText value="#{staff.email}"/>
-              </p:column>
-             
-              <p:column style="width:100px;text-align: center">
-                <p:commandButton action="#{reservationStaffController.delete(staff)}" value="Delete" styleClass="ui-priority-primary"></p:commandButton>
-              </p:column>
-              <p:column style="width:100px;text-align: center">
-                  <p:commandButton value="Edit" update=":form:EditStaff" oncomplete="PF('editDialog').show()" styleClass="ui-priority-primary">
-                    <f:setPropertyActionListener value="#{staff}" target="#{reservationStaffController.selectedStaff}"/>
-                  </p:commandButton>
-              </p:column>
+
+            <p:column style="width:100px;text-align: center">
+              <p:commandButton action="#{reservationStaffController.delete(staff)}" value="Delete" styleClass="ui-priority-primary"></p:commandButton>
+            </p:column>
+            <p:column style="width:100px;text-align: center">
+                <p:commandButton value="Edit" update=":res-form:res-EditStaff" oncomplete="PF('res-editDialog').show()" styleClass="ui-priority-primary">
+                  <f:setPropertyActionListener value="#{staff}" target="#{reservationStaffController.selectedStaff}"/>
+                </p:commandButton>
+            </p:column>
           </p:dataTable>
-          <p:dialog header="Edit Staff" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-              <p:outputPanel id="EditStaff" style="text-align:center;">
-                <h:panelGrid columns="12" cellpadding="5" columnClasses="label,value" rendered="#{not empty reservationStaffController.selectedStaff}">
-                  <h:outputText value="Name: " />
-                  <p:inputText value="#{reservationStaffController.selectedStaff.name}" />
-                  <h:outputText value="Email: " />
-                  <p:inputText value="#{reservationStaffController.selectedStaff.email}" />
-                </h:panelGrid>
-                <p:commandButton value="Update" action="#{reservationStaffController.update()}" styleClass="ui-priority-primary"/>
+                   
+          <p:dialog header="Edit Staff" widgetVar="res-editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <h:form id="res-form">
+              <p:outputPanel id="res-EditStaff" style="text-align:center;" >
+                <div class="row">
+                  <div class="col-3 mb-2">
+                    <label for="name">Name</label>
+                    <p:inputText value="#{reservationStaffController.selectedStaff.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
+                    <p:message for="name" style="color:red"/>
+                  </div>
+                  <div class="col-3 mb-2">
+                    <label for="email">Email</label>
+                    <p:inputText value="#{reservationStaffController.selectedStaff.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
+                    <p:message for="email" style="color:red"/>
+                  </div>
+                  <div class="col-3 mb-2">
+                    <label for="ic">IC</label>
+                    <p:inputText value="#{reservationStaffController.selectedStaff.ic}" class="form-control" id="ic" placeholder="Enter IC" required="true" requiredMessage="IC is required"/>
+                    <p:message for="ic" style="color:red"/>
+                  </div>
+                  <div class="col-3 mb-2">
+                    <label for="phone">Phone Number</label>
+                    <p:inputText value="#{reservationStaffController.selectedStaff.phone}" class="form-control" id="phone" placeholder="Enter Phone Number" required="true" requiredMessage="Phone Number is required"/>
+                    <p:message for="phone" style="color:red"/>
+                  </div>
+                </div>
+
+                <div class="row mt-3">
+                  <div class="col-3 mb-2">
+                    <label for="gender">Gender</label>
+                    <p:selectOneMenu id="gender" value="#{reservationStaffController.selectedStaff.gender}" style="width: 100%" required="true" requiredMessage="Gender is required">
+                        <f:selectItem itemLabel="Male" itemValue="male" />
+                        <f:selectItem itemLabel="Female" itemValue="female" />
+                    </p:selectOneMenu>
+                    <p:message for="gender" style="color:red"/>
+                  </div>
+                  <div class="col-9 mb-2">
+                    <label for="address">Address</label>
+                    <p:inputText value="#{reservationStaffController.selectedStaff.address}" class="form-control" id="address" placeholder="Enter Address" required="true" requiredMessage="Address is required"/>
+                    <p:message for="address" style="color:red"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 d-flex">
+                    <p:commandButton value="Update Staff Member" action="#{reservationStaffController.update()}" styleClass="ui-priority-primary ml-auto mt-3"/>
+                  </div>
+                </div>
               </p:outputPanel>
-            </p:dialog>
-        </h:form>  
-      </ui:define>
-    </ui:composition>
-    
-  </h:body>
-</html>
+            </h:form>
+          </p:dialog>
+        </div>
+      </div>
+    </div>
+  </ui:define>
+</ui:composition>

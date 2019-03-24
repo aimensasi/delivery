@@ -36,11 +36,6 @@ public class CustomerRegisterController implements Serializable {
   
   
   private User user;
-  private String name;
-  private String email;
-  private String password;
-  
-  private String message;
   
   /**
    * Creates a new instance of RegisterController
@@ -49,7 +44,9 @@ public class CustomerRegisterController implements Serializable {
 
   @PostConstruct
   public void onInit(){
-    
+    user = new User();
+    user.setRole(Constants.ROLE_CUSTOMER);
+    user.setIsVerified(true);
   }
 
   @PreDestroy
@@ -57,30 +54,29 @@ public class CustomerRegisterController implements Serializable {
 
   }
   
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
   
   public String register(){
     
-    if (!userFacade.isUniqueEmail(email)) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Or Password is inncorect", null));    
+    if (!userFacade.isUniqueEmail(user.getEmail()) || !userFacade.isUniqueIC(user.getIc())) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Or IC has already been taken", null));    
       return null;
     }
     
-    user = new User();
-    
-    user.setName(name);
-    user.setEmail(email);
-    user.setPassword(password);
-    user.setRole(Constants.ROLE_CUSTOMER);
 
-    
-    
     try {
       userFacade.create(user);
       
       EWallet eWallet = new EWallet(user);
       eWalletFacade.create(eWallet);
      
-      SessionUtil.setAttribue(Constants.ROLE_TYPE, Constants.ROLE_CUSTOMER);
+      SessionUtil.setAttribue(Constants.ROLE_TYPE, user.getRole());
       SessionUtil.setAttribue(Constants.USER_ID, user.getId());
       
       return "/menu?faces-redirect=true";
@@ -90,37 +86,5 @@ public class CustomerRegisterController implements Serializable {
     }
 
     return null;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 }

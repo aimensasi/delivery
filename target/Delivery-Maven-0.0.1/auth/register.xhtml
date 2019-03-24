@@ -6,48 +6,95 @@
       xmlns:p="http://primefaces.org/ui">
   
   <h:head>
-    <title>Management Staff Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <title>Delivery System | Register</title>
     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/"/>
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    
+    <link href="https://getbootstrap.com/docs/4.3/examples/cover/cover.css" rel="stylesheet"/>
+    <h:outputStylesheet library="css" name="base.css"/>
     
     <f:metadata>
       <f:event type="preRenderView" listener="#{authUtil.isOpen()}"/>
     </f:metadata>
+    
   </h:head>
   <h:body>
     
-    <div class="container-fluid">
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Management Staff | Register</h2>
+      </div>
+
+
       <div class="row">
         <div class="col-md-8 mx-auto">
-          <div class="row mt-5">
-            <h3 class="text-center">Management Staff Register</h3>
-          </div>
           <p:messages id="messages"/>
-     
+
           <h:form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <!--<input type="text" class="form-control" id="name" placeholder="Enter email"/>-->
-              <p:inputText value="#{registerController.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
-              <p:message for="name" style="color:red"/>		
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label for="name">Name</label>
+                <p:inputText value="#{registerController.user.name}" class="form-control" id="name" placeholder="Enter Name" required="true" requiredMessage="Name is required"/>
+                <p:message for="name" style="color:red"/>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="email">Email address</label>
+                <p:inputText value="#{registerController.user.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
+                <p:message for="email" style="color:red"/>	
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <!--<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>-->
-              <p:inputText value="#{registerController.email}" class="form-control" id="email" placeholder="Enter Email" required="true" requiredMessage="Email is required"/>
-              <p:message for="email" style="color:red"/>		
+            
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label for="ic">IC</label>
+                <p:inputText value="#{registerController.user.ic}" class="form-control" id="ic" placeholder="Enter IC" required="true" requiredMessage="IC is required"/>
+                <p:message for="ic" style="color:red"/>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="phone_number">Phone Number</label>
+                <p:inputText value="#{registerController.user.phone}" class="form-control" id="phone_number" placeholder="Enter Phone Number" required="true" requiredMessage="Phone Number is required"/>
+                <p:message for="phone_number" style="color:red"/>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <!--<input type="password" class="form-control" id="pasword" placeholder="Password"/>-->
-              <p:password value="#{registerController.password}" class="form-control" id="password" placeholder="Enter Password" required="true" requiredMessage="Password is required"/>
-              <p:message for="email" style="color:red"/>		
+            
+            
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label for="gender">Gender</label>
+                <p:selectOneMenu id="gender" value="#{registerController.user.gender}" style="width: 100%" required="true" requiredMessage="Gender is required">
+                    <f:selectItem itemLabel="Male" itemValue="male" />
+                    <f:selectItem itemLabel="Female" itemValue="female" />
+                </p:selectOneMenu>
+                <p:message for="gender" style="color:red"/>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="address">Address</label>
+                <p:inputText value="#{registerController.user.address}" class="form-control" id="address" placeholder="Enter Address" required="true" requiredMessage="Address is required"/>
+                <p:message for="address" style="color:red"/>
+              </div>
             </div>
-            <p:commandButton value="Register" action="#{registerController.register()}" update=":messages" styleClass="ui-priority-primary"/>
+            
+            
+            <div class="row mb-5">
+              <div class="col-12 mb-3">
+                <label for="password">Password</label>
+                <p:password feedback="true" value="#{registerController.user.password}" class="form-control" id="password" placeholder="Enter Password" required="true" requiredMessage="Password is required">
+                  <f:validateLength minimum="6" ></f:validateLength>
+                </p:password>
+                <p:message for="password" style="color:red"/>
+              </div>
+            </div>
+            
+            
+            <p:commandButton value="Register" action="#{registerController.register()}" update=":messages"  styleClass="ui-priority-primary"/>
           </h:form>
         </div>
       </div>
     </div>
   </h:body>
 </html>
+
+
 

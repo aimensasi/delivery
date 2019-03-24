@@ -32,6 +32,8 @@ public interface UserFacadeLocal {
   
   Boolean isUniqueEmail(String email);
   
+  Boolean isUniqueIC(String IC);
+  
   Boolean ManagementStaffExists();
   
   User attempt(String email, String password);
