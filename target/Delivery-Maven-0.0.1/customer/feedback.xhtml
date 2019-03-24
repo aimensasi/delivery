@@ -1,19 +1,39 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="./../WEB-INF/customer-layouts/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-  <h:head>
-  </h:head>
-  <h:body>
-    <ui:composition template="./../WEB-INF/customer-layouts/master.xhtml">
+  <ui:define name="main">
 
-      <ui:define name="main"> 
-         
-      </ui:define>
-    </ui:composition>
-  </h:body>
-</html>
+    
+    <h2 class="title mt-4">Feedbacks From Customers</h2>
+    
+    <p:dataTable var="feedback" value="#{cFeedbackController.feedbackList}" >
+      <p:column headerText="ID">
+        <h:outputText value="#{feedback.id}" />
+      </p:column>
+      
+      <p:column headerText="Order ID">
+        <h:outputText value="#{feedback.order.id}" />
+      </p:column>
+
+      <p:column headerText="Customer Name">
+        <h:outputText value="#{feedback.sender.name}" />
+      </p:column>
+
+      <p:column headerText="Rating">
+        <p:rating value="#{feedback.rating}" stars="5" id="rating" readonly="true"/>
+      </p:column>
+
+      <p:column headerText="Feedback">
+        <h:outputText value="#{feedback.feedback}" />
+      </p:column>
+     
+    </p:dataTable>
+    
+  </ui:define>
+
+</ui:composition>

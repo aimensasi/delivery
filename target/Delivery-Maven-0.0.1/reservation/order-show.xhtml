@@ -1,0 +1,123 @@
+<ui:composition template="./../WEB-INF/reservation-layouts/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <ui:define name="main">
+    <h2 class="title">Order Details</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Order ID</th>
+          <th scope="col">Number Of Item</th>
+          <th scope="col">Status</th>
+          <th scope="col">Price</th>
+          <c:if test="#{not empty showOrderController.selectedDeliveryStaff}">
+            <th scope="col">Assigned Delivery Staff</th>
+          </c:if>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <h:outputText value="#{showOrderController.reservation.id}"/>
+          </th>
+          <td>
+            <h:outputText  value="#{showOrderController.reservationItemList.size()}" />
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.reservation.status}"/>
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.reservation.totalPrice}"/>
+          </td>
+          <c:if test="#{not empty showOrderController.selectedDeliveryStaff}">
+            <td>
+              <h:outputText  value="#{showOrderController.selectedDeliveryStaff.name}" />
+            </td>
+          </c:if>
+        </tr>
+      </tbody>
+    </table>
+    
+     <h2 class="title">Customer Details</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Customer ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">E-Wallet Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <h:outputText value="#{showOrderController.customer.id}"/>
+          </th>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.name}" />
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.email}"/>
+          </td>
+          <td>
+            <h:outputText  value="#{showOrderController.customer.geteWallet().balance}"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+    <h2 class="title mt-4">Order Items</h2>
+    
+    <p:dataTable var="reservationItem" value="#{showOrderController.reservationItemList}" >
+      <p:column headerText="Id">
+        <h:outputText value="#{reservationItem.id}" />
+      </p:column>
+
+      <p:column headerText="Name">
+        <h:outputText value="#{reservationItem.food.name}" />
+      </p:column>
+
+      <p:column headerText="Unit Price">
+        <h:outputText value="#{reservationItem.food.price}" />
+      </p:column>
+
+      <p:column headerText="Quantity">
+        <h:outputText value="#{reservationItem.quantity}" />
+      </p:column>
+      
+      <p:column headerText="Total Price">
+        <h:outputText value="#{reservationItem.quantity * reservationItem.food.price}" />
+      </p:column>
+    </p:dataTable>
+      
+    
+    <h:form id="form" class="mt-3">
+      <p:commandButton value="Approve" onclick="PF('deliveryDialog').show()" styleClass="ui-priority-primary"/>
+      <p:commandButton value="Reject" action="#{showOrderController.reject()}" styleClass="ui-button-danger"/>
+      
+      <p:dialog header="Assign Delivery Staff" widgetVar="deliveryDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:dataTable var="deliveryStaff" value="#{showOrderController.deliveryStaffList}" emptyMessage="No delivery staff available at the moment" >
+          <p:column headerText="Name">
+            <h:outputText value="#{deliveryStaff.name}" />
+          </p:column>
+
+          <p:column headerText="Email">
+            <h:outputText value="#{deliveryStaff.email}" />
+          </p:column>
+          
+          <p:column headerText="Action">
+            <p:commandButton action="#{showOrderController.approve(deliveryStaff)}" value="Assign" styleClass="ui-priority-primary"></p:commandButton>
+          </p:column>
+        </p:dataTable>
+      </p:dialog>
+    </h:form>
+    
+  </ui:define>
+
+</ui:composition>

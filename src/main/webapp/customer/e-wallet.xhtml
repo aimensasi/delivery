@@ -23,7 +23,7 @@
                   <h:outputText value="#{eWalletController.balance}" style="width: 100%; text-align: center; font-size: 3rem;"/>
                 </div>
                 <div class="row mt-3 mt-auto p-0 m-0">
-                  <p:commandButton value="Top Up" update=":form:topUp" onclick="PF('topUpDialog').show()" type="button" style="width: 100%"/>
+                  <p:commandButton value="Top Up" update=":form:topUp" onclick="PF('topUpDialog').show()" type="button" style="width: 100%" styleClass="ui-priority-primary"/>
                 </div>
               </div>
               <p:dialog header="Top Up" widgetVar="topUpDialog" showEffect="fade" hideEffect="fade" resizable="false" modal="true" width="300" height="100">
@@ -31,7 +31,7 @@
                   <div class="row mx-auto mb-3">
                     <p:inputText value="#{eWalletController.amount}" style="width: 100%"/>
                   </div>
-                  <p:commandButton value="Top Up" action="#{eWalletController.topUp()}" class="" style="width: 100%;"/>
+                  <p:commandButton value="Top Up" action="#{eWalletController.topUp()}" styleClass="ui-priority-primary" style="width: 100%;"/>
                 </p:outputPanel>
               </p:dialog>
             </h:form>

@@ -1,0 +1,39 @@
+<ui:composition template="./../WEB-INF/delivery-layouts/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <ui:define name="main">
+
+    
+    <h2 class="title mt-4">Feedbacks From Customers</h2>
+    
+    <p:dataTable var="feedback" value="#{dDeedbackController.feedbackList}" >
+      <p:column headerText="ID">
+        <h:outputText value="#{feedback.id}" />
+      </p:column>
+      
+      <p:column headerText="Order ID">
+        <h:outputText value="#{feedback.order.id}" />
+      </p:column>
+
+      <p:column headerText="Customer Name">
+        <h:outputText value="#{feedback.sender.name}" />
+      </p:column>
+
+      <p:column headerText="Rating">
+        <p:rating value="#{feedback.rating}" stars="5" id="rating" readonly="true"/>
+      </p:column>
+
+      <p:column headerText="Feedback">
+        <h:outputText value="#{feedback.feedback}" />
+      </p:column>
+     
+    </p:dataTable>
+    
+  </ui:define>
+
+</ui:composition>

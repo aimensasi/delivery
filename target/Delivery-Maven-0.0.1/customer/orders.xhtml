@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
   <h:head>
   </h:head>
@@ -12,7 +13,8 @@
     <ui:composition template="./../WEB-INF/customer-layouts/master.xhtml">
 
       <ui:define name="main"> 
-         <h:form>
+        <h:form id="form">
+           <p:messages id="messages"/>
           <p:dataTable var="reservation" value="#{orderController.reservations}" >
 
             
@@ -31,6 +33,11 @@
             <p:column headerText="Price">
               <h:outputText value="#{reservation.totalPrice}" />
             </p:column>
+            
+            <p:column headerText="Action">
+              <p:commandButton value="View" action="#{orderController.view(reservation)}" update=":form:messages"/>
+            </p:column>
+            
             
           </p:dataTable>
         </h:form>

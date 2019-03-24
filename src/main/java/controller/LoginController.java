@@ -9,7 +9,6 @@ import com.blank.delivery.models.User;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
 import com.blank.delivery.utils.SessionUtil;
-import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -68,8 +67,10 @@ public class LoginController implements Serializable {
         redirectUrl = "/management/dashboard?faces-redirect=true";
         break;
       case Constants.ROLE_RESERVATION_STAFF:
+        redirectUrl = "/reservation/dashboard?faces-redirect=true";
         break;
       case Constants.ROLE_DELIVERY_STAFF:
+        redirectUrl = "/delivery/dashboard?faces-redirect=true";
         break;
       case Constants.ROLE_CUSTOMER:
         redirectUrl = "/menu?faces-redirect=true";

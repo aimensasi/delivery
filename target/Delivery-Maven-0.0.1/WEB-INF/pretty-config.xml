@@ -64,6 +64,60 @@
 	</url-mapping>
   
   
+
+
+
+  <url-mapping id="reservation-dashboard">
+		<pattern value="/reservation/dashboard" />
+		<view-id value="/reservation/dashboard.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="reservation-orders">
+		<pattern value="/reservation/orders" />
+		<view-id value="/reservation/order.xhtml" />
+	</url-mapping>
+  
+   <url-mapping id="reservation-orders-view">
+		<pattern value="/reservation/orders/#{id}" />
+		<view-id value="/reservation/order-show.xhtml" />
+	</url-mapping>
+  
+  
+  <url-mapping id="reservation-profile">
+		<pattern value="/reservation/profile" />
+		<view-id value="/reservation/profile.xhtml" />
+	</url-mapping>
+
+
+  <url-mapping id="delivery-dashboard">
+		<pattern value="/delivery/dashboard" />
+		<view-id value="/delivery/dashboard.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="delivery-orders">
+		<pattern value="/delivery/orders" />
+		<view-id value="/delivery/order.xhtml" />
+	</url-mapping>
+  
+   <url-mapping id="delivery-orders-view">
+		<pattern value="/delivery/orders/#{id}" />
+		<view-id value="/delivery/order-show.xhtml" />
+	</url-mapping>
+  
+  <url-mapping id="delivery-feedback">
+		<pattern value="/delivery/feedbacks" />
+		<view-id value="/delivery/feedback.xhtml" />
+  </url-mapping>
+
+
+  <url-mapping id="delivery-profile">
+		<pattern value="/delivery/profile" />
+		<view-id value="/delivery/profile.xhtml" />
+	</url-mapping>
+
+
+
+  
   
   <url-mapping id="menu">
 		<pattern value="/menu" />
@@ -77,13 +131,23 @@
 		<pattern value="/feedback" />
 		<view-id value="/customer/feedback.xhtml" />
 	</url-mapping>
+  
   <url-mapping id="order">
 		<pattern value="/orders" />
 		<view-id value="/customer/orders.xhtml" />
 	</url-mapping>
+  
+  <url-mapping id="customer-order-details">
+		<pattern value="/orders/#{id}" />
+		<view-id value="/customer/order-show.xhtml" />
+  </url-mapping>
+
   <url-mapping id="profile">
 		<pattern value="/profile" />
 		<view-id value="/customer/profile.xhtml" />
 	</url-mapping>
+  
+  
+  
  
 </pretty-config>

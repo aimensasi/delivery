@@ -8,6 +8,7 @@ package com.blank.delivery.sessionbean;
 import com.blank.delivery.models.User;
 import com.blank.delivery.utils.Constants;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -81,7 +82,6 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     
     return query.getResultList();
   }
-  
   
    
 }

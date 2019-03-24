@@ -5,3 +5,41 @@
 .full-width, .full-width input{
   width: 100% !important;
 }
+
+.ui-button-danger{
+  background: red;
+  color: white;
+}
+
+.btn-login{
+  width: 181px;
+  height: 39px;
+  padding: 4px 0 !important;
+  border-radius: 66px !important;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400 !important;
+}
+
+
+.header .ui-menu{
+  border-radius: 0;
+  background: white;
+  border: none;
+  padding-top: 1rem;
+  padding-bottom: 0.9rem;
+}
+
+.header .ui-menu.ui-widget li > .ui-menuitem-link{
+  padding: 0.5rem 2.5rem;
+  background: none;
+  transition: all 0.5s ease;
+  border-radius: 50px;
+  color: #333333 !important;
+}
+
+.header .ui-menu.ui-widget li > .ui-menuitem-link:hover{
+  opacity: 0.5;
+}
+
+

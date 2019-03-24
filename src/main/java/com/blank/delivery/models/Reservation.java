@@ -33,7 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "reservations")
 @XmlRootElement
 @NamedQueries({
-  @NamedQuery(name = "Reservation.findAll", query = "SELECT r FROM Reservation r")})
+    @NamedQuery(name = "Reservation.findAll", query = "SELECT r FROM Reservation r")
+  , @NamedQuery(name = "Reservation.findApprovedByDeliveryStaff", query = "SELECT r FROM Reservation r WHERE r.deliverStaffId = :delivery_staff_id AND r.status = :status")
+  , @NamedQuery(name = "Reservation.findDeliveredByDeliveryStaff", query = "SELECT r FROM Reservation r WHERE r.deliverStaffId = :delivery_staff_id AND r.status = :status")
+  , @NamedQuery(name = "Reservation.findByDeliveryStaffId", query = "SELECT r FROM Reservation r WHERE r.deliverStaffId = :delivery_staff_id")
+})
 public class Reservation implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -52,6 +56,9 @@ public class Reservation implements Serializable {
   @JoinColumn(name = "delivery_staff_id")
   private User deliveryStaff;
   
+  @Column(name = "delivery_staff_id", insertable = false, updatable = false)
+  private int deliverStaffId;
+  
   @Basic(optional = false)
   @Size(min = 1, max = 255)
   @Column(name = "status")
@@ -65,6 +72,7 @@ public class Reservation implements Serializable {
   @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "order_id")
   private List<ReservationItem> reservationItemList = new ArrayList<>();
+  
 
   public Reservation() {
   }
@@ -132,7 +140,11 @@ public class Reservation implements Serializable {
   public void setReservationItemList(List<ReservationItem> reservationItemList) {
     this.reservationItemList = reservationItemList;
   }
-  
+
+  public int getDeliverStaffId() {
+    return deliverStaffId;
+  }
+
   
 
   @Override

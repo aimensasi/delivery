@@ -8,11 +8,14 @@ package com.blank.delivery.sessionbean;
 import com.blank.delivery.models.Food;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.ReservationItem;
+import com.blank.delivery.models.User;
+import com.blank.delivery.utils.Constants;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -49,7 +52,27 @@ public class ReservationFacade extends AbstractFacade<Reservation> implements Re
   public List<Reservation> getCurrentCustomerOrders() {
     return null;
   }
-  
+
+  @Override
+  public List<Reservation> findApprovedOrdersWithDeliverStaff(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findApprovedByDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "approved");
+    
+    return query.getResultList();
+  }
+
+  @Override
+  public List<Reservation> findDeliveredOrdersWithDeliverStaff(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findDeliveredByDeliveryStaff", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId()).setParameter("status", "delivered");
+    
+    return query.getResultList();
+  }
+
+  @Override
+  public List<Reservation> findByDeliveryStaffId(User deliveryStaff) {
+    TypedQuery<Reservation> query = em.createNamedQuery("Reservation.findByDeliveryStaffId", Reservation.class).setParameter("delivery_staff_id", deliveryStaff.getId());
+    
+    return query.getResultList();
+  }
   
   
   

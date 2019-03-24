@@ -3,12 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
   <h:head>
-    <title>Facelet Title</title>
+    <title>Delivery System</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/"/>
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    
+    <link href="https://getbootstrap.com/docs/4.3/examples/cover/cover.css" rel="stylesheet"/>
+    <h:outputStylesheet library="css" name="base.css"/>
+    
   </h:head>
   <h:body>
-    Hello from Facelets
-    <br />
-    <h:link outcome="auth/login.xhtml" value="Login" />
+   
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead">
+        <div class="inner">
+          <h3 class="masthead-brand">Delivery System</h3>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover my-auto">
+        <h1 class="cover-heading">Welcome to the Delivery System.</h1>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elementum ex eget ex blandit ullamcorper. Morbi eget mauris nulla.
+        </p>
+        <p class="lead d-flex mt-5">
+          <h:link outcome="auth/login.xhtml" value="Login" class="btn btn-lg btn-secondary btn-login"/>
+        </p>
+      </main>
+    </div>
+    
   </h:body>
 </html>
 

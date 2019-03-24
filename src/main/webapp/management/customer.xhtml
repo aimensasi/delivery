@@ -21,12 +21,11 @@
                   <h:outputText value="#{customer.email}"/>
               </p:column>
               <p:column style="width:100px;text-align: center">
-                <p:commandButton action="#{mCustomerController.deleteCustomer(customer)}" value="Delete">
-                  
+                <p:commandButton action="#{mCustomerController.deleteCustomer(customer)}" value="Delete" styleClass="ui-priority-primary">
                 </p:commandButton>
               </p:column>
               <p:column style="width:100px;text-align: center">
-                  <p:commandButton value="Edit" update=":form:customerEdit" oncomplete="PF('editDialog').show()">
+                  <p:commandButton value="Edit" update=":form:customerEdit" oncomplete="PF('editDialog').show()" styleClass="ui-priority-primary">
                     <f:setPropertyActionListener value="#{customer}" target="#{mCustomerController.selectedCustomer}"/>
                   </p:commandButton>
               </p:column>
@@ -39,7 +38,7 @@
                   <h:outputText value="Email: " />
                   <p:inputText value="#{mCustomerController.selectedCustomer.email}" />
                 </h:panelGrid>
-                <p:commandButton value="Update" action="#{mCustomerController.updateCustomer()}"/>
+                <p:commandButton value="Update" action="#{mCustomerController.updateCustomer()}" styleClass="ui-priority-primary"/>
               </p:outputPanel>
             </p:dialog>
         </h:form>  
