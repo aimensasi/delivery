@@ -87,10 +87,7 @@ public class EWalletController implements Serializable {
   public void setBalance(float balance) {
     this.balance = balance;
   }
-  
-  
-  
-  
+    
   public void topUp(){
     balance += amount;
     eWallet.setBalance(balance);
