@@ -6,9 +6,11 @@
 package com.blank.delivery.sessionbean;
 
 import com.blank.delivery.models.EWallet;
+import com.blank.delivery.models.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +30,14 @@ public class EWalletFacade extends AbstractFacade<EWallet> implements EWalletFac
   public EWalletFacade() {
     super(EWallet.class);
   }
+
+  @Override
+  public EWallet findByUserId(int id) {
+    TypedQuery<EWallet> query = em.createNamedQuery("EWallet.findByUserId", EWallet.class).setParameter("customer_id", id);
+    
+    return query.getResultList().get(0);
+  }
+  
+  
   
 }

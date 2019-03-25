@@ -27,7 +27,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "e_wallets")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "EWallet.findAll", query = "SELECT e FROM EWallet e") })
+@NamedQueries({ @NamedQuery(name = "EWallet.findAll", query = "SELECT e FROM EWallet e"),
+  @NamedQuery(name = "EWallet.findByUserId", query = "SELECT e FROM EWallet e WHERE e.customerId = :customer_id")
+})
 public class EWallet implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -39,6 +41,9 @@ public class EWallet implements Serializable {
  @OneToOne(cascade = CascadeType.REFRESH)
  @JoinColumn(name = "customer_id")
  private User customer;
+ 
+ @Column(name = "customer_id", insertable = false, updatable = false)
+ private int customerId;
   
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "balance")
@@ -78,6 +83,16 @@ public class EWallet implements Serializable {
   public void setBalance(Float balance) {
     this.balance = balance;
   }
+
+  public int getCustomerId() {
+    return customerId;
+  }
+
+  public void setCustomerId(int customerId) {
+    this.customerId = customerId;
+  }
+  
+  
 
   @Override
   public int hashCode() {

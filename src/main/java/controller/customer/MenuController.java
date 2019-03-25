@@ -5,10 +5,12 @@
  */
 package controller.customer;
 
+import com.blank.delivery.models.EWallet;
 import com.blank.delivery.models.Food;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.ReservationItem;
 import com.blank.delivery.models.User;
+import com.blank.delivery.sessionbean.EWalletFacadeLocal;
 import com.blank.delivery.sessionbean.FoodFacadeLocal;
 import com.blank.delivery.sessionbean.ReservationFacadeLocal;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
@@ -22,6 +24,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -31,22 +34,29 @@ import javax.faces.context.FacesContext;
  * @author aimen.s.a.sasi
  */
 @Named(value = "menuController")
-@SessionScoped
+@RequestScoped
 public class MenuController implements Serializable {
   
   @EJB
   private FoodFacadeLocal foodFacade;
   @EJB
   private UserFacadeLocal userFacade;
-  @EJB private ReservationFacadeLocal reservationFacade;
+  @EJB 
+  private ReservationFacadeLocal reservationFacade;
+  @EJB
+  private EWalletFacadeLocal eWalletFacade;
+  
   
   
   
   private Reservation reservation;
   private User currentCustomer;
+  
+  private EWallet eWallet;
  
   private List<Food> foodList;
   private List<ReservationItem> reservationItems = new ArrayList<>();
+  
   
   
   
@@ -59,7 +69,7 @@ public class MenuController implements Serializable {
   @PostConstruct
   public void onInit(){
     currentCustomer = userFacade.find(SessionUtil.getUserId());
-    
+    eWallet = eWalletFacade.findByUserId(currentCustomer.getId());
     
     reservation = new Reservation(currentCustomer);
     
@@ -124,8 +134,10 @@ public class MenuController implements Serializable {
       return;
     }
     
+    
   
-    if (currentCustomer.geteWallet() == null || currentCustomer.geteWallet().getBalance() < totalPrice) {
+    
+    if (eWallet == null || eWallet.getBalance() < totalPrice) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Your e-wallet does not have enough money, top up and come back again.", null));
       return;
     }

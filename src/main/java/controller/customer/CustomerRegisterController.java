@@ -33,8 +33,6 @@ public class CustomerRegisterController implements Serializable {
   private UserFacadeLocal userFacade;
   @EJB
   private EWalletFacadeLocal eWalletFacade;
-  
-  
   private User user;
   
   /**
@@ -67,14 +65,15 @@ public class CustomerRegisterController implements Serializable {
     if (!userFacade.isUniqueEmail(user.getEmail()) || !userFacade.isUniqueIC(user.getIc())) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Or IC has already been taken", null));    
       return null;
-    }
-    
+    }   
 
     try {
       userFacade.create(user);
       
       EWallet eWallet = new EWallet(user);
+      eWallet.setBalance((float)0);
       eWalletFacade.create(eWallet);
+      
      
       SessionUtil.setAttribue(Constants.ROLE_TYPE, user.getRole());
       SessionUtil.setAttribue(Constants.USER_ID, user.getId());

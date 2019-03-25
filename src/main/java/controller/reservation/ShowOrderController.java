@@ -5,9 +5,13 @@
  */
 package controller.reservation;
 
+import com.blank.delivery.models.EWallet;
+import com.blank.delivery.models.Food;
 import com.blank.delivery.models.Reservation;
 import com.blank.delivery.models.ReservationItem;
 import com.blank.delivery.models.User;
+import com.blank.delivery.sessionbean.EWalletFacadeLocal;
+import com.blank.delivery.sessionbean.FoodFacadeLocal;
 import com.blank.delivery.sessionbean.ReservationFacadeLocal;
 import com.blank.delivery.sessionbean.UserFacadeLocal;
 import com.blank.delivery.utils.Constants;
@@ -35,8 +39,16 @@ public class ShowOrderController implements Serializable {
   @EJB
   private ReservationFacadeLocal reservationFacade;
   
-  @EJB private UserFacadeLocal userFacade;
+  @EJB 
+  private UserFacadeLocal userFacade;
+  
+  @EJB
+  private EWalletFacadeLocal eWalletFacade;
+  
+  @EJB
+  private FoodFacadeLocal foodFacade;
 
+  
 //   order id from request param
   private String id;
   private Reservation reservation;
@@ -44,7 +56,7 @@ public class ShowOrderController implements Serializable {
   private User customer;
   private List<User> deliveryStaffList;
   private User selectedDeliveryStaff;
-   
+  private EWallet eWallet;
    
   /**
    * Creates a new instance of ShowOrderController
@@ -71,6 +83,7 @@ public class ShowOrderController implements Serializable {
     
     reservationItemList = reservation.getReservationItemList();
     customer = reservation.getCustomer();
+    eWallet = eWalletFacade.findByUserId(customer.getId());
     
     
     selectedDeliveryStaff = reservation.getDeliveryStaff();
@@ -134,19 +147,52 @@ public class ShowOrderController implements Serializable {
   
  
   public void approve(User deliveryStaff){
+    if (reservation.getStatus().equals("approved")) {
+      return;
+    }
+    
+    if (reservation.getStatus().equals("rejected")) {
+
+      eWallet.setBalance(eWallet.getBalance() - reservation.getTotalPrice());
+      eWalletFacade.edit(eWallet);
+
+      for(ReservationItem reservationItem : reservationItemList){
+        Food food = reservationItem.getFood();
+        food.setQuantity(food.getQuantity() - reservationItem.getQuantity());
+
+        foodFacade.edit(food);
+      }
+    }
+    
     reservation.setDeliveryStaff(deliveryStaff);
     reservation.setStatus("approved");
     
     reservationFacade.edit(reservation);
     
+    eWallet.setBalance(eWallet.getBalance() - reservation.getTotalPrice());
+    eWalletFacade.edit(eWallet);
+    
     refresh();
   }
   
   public void reject(){
+    if(reservation.getStatus().equals("rejected")){
+      return;
+    }
+    
     if (reservation.getStatus().equals("approved")) {
       reservation.setDeliveryStaff(null);
-    }else if(reservation.getStatus().equals("rejected")){
-      return;
+      
+      eWallet.setBalance(eWallet.getBalance() + reservation.getTotalPrice());
+      eWalletFacade.edit(eWallet);
+    
+      for(ReservationItem reservationItem : reservationItemList){
+        Food food = reservationItem.getFood();
+        food.setQuantity(food.getQuantity() + reservationItem.getQuantity());
+        
+        foodFacade.edit(food);
+      }
+      
     }
     
     reservation.setStatus("rejected");

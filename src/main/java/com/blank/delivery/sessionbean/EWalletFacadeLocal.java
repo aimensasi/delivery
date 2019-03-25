@@ -30,4 +30,6 @@ public interface EWalletFacadeLocal {
 
   int count();
   
+  EWallet findByUserId(int id);
+  
 }

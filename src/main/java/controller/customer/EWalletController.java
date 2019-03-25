@@ -17,6 +17,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -26,7 +27,7 @@ import javax.faces.context.FacesContext;
  * @author aimen.s.a.sasi
  */
 @Named(value = "eWalletController")
-@SessionScoped
+@RequestScoped
 public class EWalletController implements Serializable {
   
   @EJB
@@ -47,7 +48,10 @@ public class EWalletController implements Serializable {
   @PostConstruct
   public void onInit(){
     User currentCustomer = userFacade.find(SessionUtil.getUserId());
-    eWallet = currentCustomer.geteWallet();
+    eWallet = eWalletFacade.findByUserId(currentCustomer.getId());
+    
+    System.out.println("controller.customer.EWalletController.onInit() " + eWallet.toString());
+    System.out.println("controller.customer.EWalletController.onInit()" + eWallet != null);
     
     if (eWallet != null) {
       balance = eWallet.getBalance();
